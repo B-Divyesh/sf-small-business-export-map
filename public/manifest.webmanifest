@@ -2,7 +2,7 @@
   "name": "Export Map",
   "short_name": "Export Map",
   "description": "Prepare CSVs for your accountant in your browser.",
-  "start_url": "/?source=pwa-v2",
+  "start_url": "/?source=pwa-v3",
   "scope": "/",
   "display": "standalone",
   "background_color": "#F4EBD8",

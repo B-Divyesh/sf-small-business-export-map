@@ -1,12 +1,121 @@
 [
-  {"id":"demo-isolation","claim":"The sample handoff is isolated from saved recipient profiles.","where":"Demo banner and README","test":"npm run test:e2e -- --grep @claim:demo-isolation","sandbox":"Fresh browser context; save a real profile, open and reset /demo, then confirm the real profile remains."},
-  {"id":"offline-demo","claim":"The sample handoff works offline after the first visit.","where":"Landing facts and README","test":"npm run test:e2e -- --grep @claim:offline-demo","sandbox":"Fresh context; visit /demo, wait for service worker, set offline, reload."},
-  {"id":"csv-manifest","claim":"Downloads a reshaped CSV and a JSON record of changes.","where":"Demo review and README","test":"npm run test:e2e -- --grep @claim:csv-manifest","sandbox":"Fresh demo; download both files and inspect the manifest."},
-  {"id":"privacy-demo","claim":"The sample CSV does not leave this browser.","where":"Landing facts, privacy page, README","test":"npm run test:e2e -- --grep @claim:privacy-demo","sandbox":"Record all requests through the complete /demo flow; allow only same-origin requests."},
-  {"id":"profile-persistence","claim":"Saved recipient profiles stay on this device.","where":"Profile controls and README","test":"npm run test:e2e -- --grep @claim:profile-persistence","sandbox":"Fresh browser context; save one profile and reload."}
-  ,{"id":"source-preservation","claim":"The selected source CSV stays unchanged.","where":"Landing facts","test":"npm run test:e2e -- --grep @claim:source-preservation","sandbox":"Fresh context; prepare a CSV, download output, and assert the selected source file remains separate."}
-  ,{"id":"profile-limit","claim":"The free version saves two recipient profiles.","where":"Paid section and README","test":"npm run test:e2e -- --grep @claim:profile-limit","sandbox":"Fresh context; save two profiles and assert a third is rejected."}
-  ,{"id":"pro-checkout","claim":"A one-time US$19 purchase saves unlimited recipient profiles through Sociobot/Dodo checkout.","where":"Paid section and README","test":"npm run test:e2e -- --grep @claim:pro-checkout","sandbox":"Request the approved production checkout endpoint without payment and assert its Dodo redirect."}
-  ,{"id":"file-limit","claim":"Files over 10 MB are rejected.","where":"Choose CSV control","test":"npm run test:e2e -- --grep @claim:file-limit","sandbox":"Fresh context; select a 10 MB + 1 byte file and assert the stated limit error."}
-  ,{"id":"explicit-formatting","claim":"Export Map changes numbers and dates only when the user marks a column with that format.","where":"Recipient columns help text and Terms","test":"npm run test:unit -- -t @claim:explicit-formatting","sandbox":"CSV fixture with typed date and number fields plus untouched text fixture."}
+  {
+    "id": "demo-isolation",
+    "claim": "The finished sample uses separate demo storage and never changes real profiles.",
+    "where": "Demo banner, README, demo guide",
+    "test": "npm run test:e2e -- --grep @claim:demo-isolation",
+    "sandbox": "Fresh context; save a real profile, reset /demo, inspect both IndexedDB names, exit, and verify the real profile."
+  },
+  {
+    "id": "offline-demo",
+    "claim": "The finished sample works offline after the first visit.",
+    "where": "First-screen facts, README",
+    "test": "npm run test:e2e -- --grep @claim:offline-demo",
+    "sandbox": "Fresh context; prime /demo and its service worker, set the context offline, reload, and inspect the finished result."
+  },
+  {
+    "id": "csv-change-record",
+    "claim": "The app downloads a prepared CSV and JSON change record containing all sample rows and transformations.",
+    "where": "Result panel, README",
+    "test": "npm run test:e2e -- --grep @claim:csv-change-record",
+    "sandbox": "Fresh /demo; read both downloads and assert headers, three transformed rows, SHA-256, mappings, checks, transformations, and reversal text."
+  },
+  {
+    "id": "privacy-demo",
+    "claim": "The complete sample flow makes only same-origin requests.",
+    "where": "Demo banner, demo guide",
+    "test": "npm run test:e2e -- --grep @claim:privacy-demo",
+    "sandbox": "Fresh /demo; record requests through both downloads and reset, then reject every non-local origin."
+  },
+  {
+    "id": "privacy-real-workflow",
+    "claim": "A real CSV stays on the device; its complete preparation flow makes only same-origin requests.",
+    "where": "First screen, privacy page, README",
+    "test": "npm run test:e2e -- --grep @claim:privacy-real-workflow",
+    "sandbox": "Fresh context; select a generated local CSV, map, preview, download both outputs, and reject every non-local origin."
+  },
+  {
+    "id": "profile-persistence",
+    "claim": "Saved recipient profiles remain in this browser across reloads.",
+    "where": "Profile controls, privacy page, README",
+    "test": "npm run test:e2e -- --grep @claim:profile-persistence",
+    "sandbox": "Fresh context; save a profile, reload, and inspect the export-map IndexedDB object store."
+  },
+  {
+    "id": "source-preservation",
+    "claim": "Preparing a CSV does not change the selected source file, and refreshing clears the active selection.",
+    "where": "Privacy summary and privacy page",
+    "test": "npm run test:e2e -- --grep @claim:source-preservation",
+    "sandbox": "Fresh context; select a known byte fixture, download prepared output, and re-read the selected file name and bytes."
+  },
+  {
+    "id": "file-limit",
+    "claim": "Valid CSV files up to and including 10 MB are accepted; larger files are rejected.",
+    "where": "CSV chooser",
+    "test": "npm run test:e2e -- --grep @claim:file-limit",
+    "sandbox": "Fresh context; select a valid exactly-10-MB quoted CSV, then a 10-MB-plus-one-byte file."
+  },
+  {
+    "id": "profile-limit",
+    "claim": "The free version saves two recipient profiles.",
+    "where": "First screen, profile status, purchase section, README",
+    "test": "npm run test:e2e -- --grep @claim:profile-limit",
+    "sandbox": "Fresh context without a license; save two profiles and assert the third is rejected."
+  },
+  {
+    "id": "explicit-formatting",
+    "claim": "Numbers and dates change only in columns explicitly marked with those formats.",
+    "where": "Column settings, README, terms",
+    "test": "npm run test:unit -- -t @claim:explicit-formatting",
+    "sandbox": "Typed and text-mapped copies of the same date and number; assert typed conversion and byte-for-byte text preservation."
+  },
+  {
+    "id": "formula-protection",
+    "claim": "Optional formula protection prefixes values beginning with equals, plus, or at signs.",
+    "where": "Recipient profile settings",
+    "test": "npm run test:unit -- -t @claim:formula-protection",
+    "sandbox": "Fixtures beginning =, +, and @; assert prefixes with protection on and unchanged values with it off."
+  },
+  {
+    "id": "core-format-matrix",
+    "claim": "The app supports four separators, two decimal marks, four date formats, and reordered or renamed columns.",
+    "where": "Format controls, how it works, README",
+    "test": "npm run test:unit -- -t @claim:core-format-matrix",
+    "sandbox": "Fixtures for every listed separator, decimal direction, date format, and reversed renamed columns."
+  },
+  {
+    "id": "preview-full-download",
+    "claim": "The preview shows no more than eight rows while the downloaded CSV contains every row.",
+    "where": "Output preview",
+    "test": "npm run test:e2e -- --grep @claim:preview-full-download",
+    "sandbox": "Fresh 11-row CSV; assert eight preview rows and exactly 11 unique downloaded data rows."
+  },
+  {
+    "id": "profile-backup",
+    "claim": "Profile export and import round-trip every profile field without crossing demo and real storage.",
+    "where": "Profile backup controls, README",
+    "test": "npm run test:e2e -- --grep @claim:profile-backup",
+    "sandbox": "Save two profiles, export, delete, import and deep-compare; import in /demo and verify real profiles remain."
+  },
+  {
+    "id": "checkout-host",
+    "claim": "The US$19 one-time purchase opens Sociobot/Dodo checkout.",
+    "where": "Purchase section, terms, README",
+    "test": "npm run test:e2e -- --grep @claim:checkout-host",
+    "sandbox": "Inspect price and merchant copy, then require the production checkout endpoint to redirect to checkout.dodopayments.com without payment."
+  },
+  {
+    "id": "pro-license",
+    "claim": "A valid license is stored locally, checked at most daily, and enables more than two profiles; a revoked license relocks saving.",
+    "where": "Restore purchase, privacy page, terms, README",
+    "test": "npm run test:e2e -- --grep @claim:pro-license",
+    "sandbox": "Recorded valid and revoked verification responses; assert URL cleanup, localStorage, 24-hour cache, third-profile save, relock, and no token in Cache Storage."
+  },
+  {
+    "id": "template-import",
+    "claim": "Import accountant template reads header order locally and saves it only in the active storage namespace.",
+    "where": "Accountant-column controls, README",
+    "test": "npm run test:e2e -- --grep @claim:template-import",
+    "sandbox": "Fresh real profile plus /demo; import a four-column template, inspect order and requests, then confirm the real profile is unchanged."
+  }
 ]

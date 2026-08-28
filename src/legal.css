@@ -25,3 +25,12 @@ h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); max-width: 13ch; margin: .25rem 0 1.
 h2 { font-size: 1.7rem; margin-top: 2.5rem; }
 .lede { font-size: 1.2rem; max-width: 60ch; }
 .updated { margin-top: 3rem; color: var(--muted); }
+.brand { display: flex; align-items: center; gap: .65rem; }
+.brand-mark { width: 34px; height: 34px; border: 2px solid var(--ink); display: grid; place-items: center; background: var(--raised); box-shadow: 2px 2px 0 var(--coral); font-family: system-ui; }
+.status-pill { display: inline-flex; align-items: center; gap: .4rem; padding: .35rem .65rem; border: 1.5px solid var(--ink); border-radius: 999px; font-size: .8rem; font-weight: 800; background: var(--raised); }
+.status-dot { width: .55rem; height: .55rem; background: #2d6b4e; border-radius: 50%; }
+.button { min-height: 46px; border: 2px solid var(--ink); border-radius: 6px; padding: .65rem 1rem; background: var(--raised); font-weight: 900; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; margin: .25rem .5rem .25rem 0; }
+.button.primary { background: var(--blue); color: white; box-shadow: 3px 3px 0 var(--ink); }
+.not-found { min-height: 55vh; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+@media (max-width: 760px) { .site-header { align-items: flex-start; } .header-nav { order: 3; width: 100%; justify-content: space-between; } .status-pill { font-size: .72rem; } }

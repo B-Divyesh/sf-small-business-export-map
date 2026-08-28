@@ -69,6 +69,17 @@ export function parseCsv(text: string): ParsedCsv {
   return { headers, rows, delimiter, warnings };
 }
 
+export function parseTemplateHeaders(text: string): string[] {
+  const clean = text.replace(/^\uFEFF/, '');
+  if (!clean.trim()) throw new Error('This template is empty. Choose a CSV with accountant column names.');
+  const rows = parseRows(clean, detectDelimiter(clean));
+  const headers = (rows[0] ?? []).map((value) => value.trim());
+  if (headers.some((header) => !header)) throw new Error('The template header has an empty column name. Name every column first.');
+  const duplicate = headers.find((header, index) => headers.indexOf(header) !== index);
+  if (duplicate) throw new Error(`The template repeats “${duplicate}”. Use each accountant column once.`);
+  return headers;
+}
+
 export function delimiterLabel(value: Delimiter): string {
   return value === ',' ? 'Comma (,)' : value === ';' ? 'Semicolon (;)' : value === '\t' ? 'Tab' : 'Pipe (|)';
 }
@@ -111,10 +122,10 @@ export function transformCsv(parsed: ParsedCsv, profile: RecipientProfile): Tran
   const active = profile.mappings.filter((mapping) => mapping.target.trim());
   const targets = active.map((mapping) => mapping.target.trim());
   const duplicate = targets.find((target, index) => targets.indexOf(target) !== index);
-  if (!active.length) issues.push({ level: 'error', title: 'No recipient columns', detail: 'Add at least one column to the recipient map.' });
-  if (duplicate) issues.push({ level: 'error', title: 'Duplicate recipient column', detail: `“${duplicate}” appears more than once.` });
+  if (!active.length) issues.push({ level: 'error', title: 'No accountant columns', detail: 'Add at least one column your accountant requested.' });
+  if (duplicate) issues.push({ level: 'error', title: 'Duplicate accountant column', detail: `“${duplicate}” appears more than once.` });
   for (const mapping of active) {
-    if (mapping.required && !mapping.source) issues.push({ level: 'error', title: `Map “${mapping.target}”`, detail: 'This required recipient column has no source column.' });
+    if (mapping.required && !mapping.source) issues.push({ level: 'error', title: `Connect “${mapping.target}”`, detail: 'This required accountant column has no source column.' });
     if (mapping.source && !parsed.headers.includes(mapping.source)) issues.push({ level: 'error', title: `Source column missing`, detail: `“${mapping.source}” is not in this file.` });
   }
   const outputRows: string[][] = [];
@@ -149,12 +160,12 @@ export function transformCsv(parsed: ParsedCsv, profile: RecipientProfile): Tran
   invalidByTarget.forEach((samples, target) => issues.push({ level: 'error', title: `Check values in “${target}”`, detail: `These do not match the declared ${active.find((item) => item.target === target)?.kind} format: ${samples.map((v) => `“${v}”`).join(', ')}.` }));
   parsed.warnings.forEach((detail) => issues.push({ level: 'warning', title: 'Uneven source rows', detail }));
   if (parsed.delimiter !== profile.delimiter) issues.push({ level: 'warning', title: 'Delimiter will change', detail: `${delimiterLabel(parsed.delimiter)} → ${delimiterLabel(profile.delimiter)}.` });
-  if (!issues.some((issue) => issue.level === 'error')) issues.push({ level: 'pass', title: 'Ready for handoff', detail: `${outputRows.length.toLocaleString()} records match the declared map.` });
+  if (!issues.some((issue) => issue.level === 'error')) issues.push({ level: 'pass', title: 'Ready to download', detail: `${outputRows.length.toLocaleString()} rows match the accountant's columns and formats.` });
   const lines = [targets, ...outputRows].map((row) => row.map((value) => quote(value, profile.delimiter)).join(profile.delimiter));
   const changes = [
-    { action: `Select and order ${active.length} recipient columns`, affected: outputRows.length, reversible: 'Use each manifest source → recipient mapping in reverse.' },
+    { action: `Select and order ${active.length} accountant columns`, affected: outputRows.length, reversible: 'Use each source and accountant column pair in reverse.' },
     ...(parsed.delimiter !== profile.delimiter ? [{ action: `Change delimiter from ${delimiterLabel(parsed.delimiter)} to ${delimiterLabel(profile.delimiter)}`, affected: outputRows.length + 1, reversible: `Parse with ${delimiterLabel(profile.delimiter)} and write with ${delimiterLabel(parsed.delimiter)}.` }] : []),
-    ...(renamed ? [{ action: 'Rename mapped column headers', affected: active.filter((m) => m.source !== m.target).length, reversible: 'Rename each recipient header back to its recorded source header.' }] : []),
+    ...(renamed ? [{ action: 'Rename connected column headers', affected: active.filter((m) => m.source !== m.target).length, reversible: 'Rename each accountant header back to its recorded source header.' }] : []),
     ...(numbers ? [{ action: `Convert decimal mark ${profile.sourceDecimal} → ${profile.outputDecimal} in number columns`, affected: numbers, reversible: `Apply ${profile.outputDecimal} → ${profile.sourceDecimal} only to the listed number columns.` }] : []),
     ...(dates ? [{ action: `Convert dates ${profile.sourceDate} → ${profile.outputDate}`, affected: dates, reversible: `Parse ${profile.outputDate} and format as ${profile.sourceDate} only in listed date columns.` }] : []),
     ...(formulas ? [{ action: 'Prefix formula-like cells with an apostrophe', affected: formulas, reversible: 'Remove one leading apostrophe from the listed protected values.' }] : []),

@@ -1,0 +1,40 @@
+/* Round-two refinements preserve the print-room system while keeping demo
+   state and wide data controls usable on small screens. */
+.demo-banner {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  padding-block: .6rem;
+  box-shadow: 3px 3px 0 var(--moss);
+}
+
+.demo-banner span { flex: none; }
+.hero-art { margin-inline: 0; }
+
+@media (max-width: 800px) {
+  .hero { grid-template-columns: minmax(0, 1fr); }
+  .hero > * { min-width: 0; }
+  .hero-art img { max-width: 100%; }
+  .demo-banner {
+    align-items: center;
+    flex-direction: row;
+    font-size: .88rem;
+  }
+
+  .demo-banner .button,
+  .demo-banner .link-button {
+    font-size: .82rem;
+    padding: .35rem .5rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .demo-banner {
+    margin-inline: .5rem;
+    padding-inline: .65rem;
+    gap: .5rem;
+  }
+
+  .demo-banner span { gap: .25rem; }
+  .demo-banner strong { max-width: 15ch; }
+}

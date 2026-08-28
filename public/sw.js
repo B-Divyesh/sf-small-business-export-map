@@ -1,4 +1,4 @@
-const VERSION = 'export-map-v2';
+const VERSION = 'export-map-v3';
 const SHELL = ['/', '/demo', '/offline.html', '/privacy/', '/terms/', '/404.html', '/manifest.webmanifest', '/assets/export-route-768.webp', '/icons/icon-192.png', '/icons/icon-512.png'];
 
 self.addEventListener('install', (event) => {
@@ -16,8 +16,9 @@ self.addEventListener('fetch', (event) => {
   // Cache Storage. This avoids retaining a private token after URL cleanup.
   if (url.searchParams.has('license')) return;
   if (event.request.mode === 'navigate') {
-    const cacheKey = new Request(url.pathname === '/demo' ? '/demo' : '/', { method: 'GET' });
-    event.respondWith(fetch(event.request).then((response) => { const copy = response.clone(); caches.open(VERSION).then((cache) => cache.put(cacheKey, copy)); return response; }).catch(async () => (await caches.match(cacheKey)) || caches.match('/') || caches.match('/offline.html')));
+    const knownPath = url.pathname === '/demo' || url.pathname === '/demo/' ? '/demo' : url.pathname === '/privacy/' || url.pathname === '/terms/' ? url.pathname : '/';
+    const cacheKey = new Request(knownPath, { method: 'GET' });
+    event.respondWith(fetch(event.request).then((response) => { if (response.ok) { const copy = response.clone(); caches.open(VERSION).then((cache) => cache.put(cacheKey, copy)); } return response; }).catch(async () => (await caches.match(cacheKey)) || caches.match('/offline.html')));
     return;
   }
   event.respondWith(caches.match(event.request).then((cached) => cached || fetch(event.request).then((response) => { if (response.ok) { const copy = response.clone(); caches.open(VERSION).then((cache) => cache.put(event.request, copy)); } return response; })));

@@ -1,1 +1,1 @@
-Prepare CSVs for your accountant with requested columns, number marks, dates, and a record of each change.
+Prepare CSVs with the columns, numbers, and dates your accountant requested.

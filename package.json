@@ -10,7 +10,8 @@
     "test:unit": "vitest run tests/unit",
     "test:e2e": "playwright test",
     "verify:url": "bash scripts/verify-url.sh",
-    "test": "npm run test:unit && npm run build && npm run test:e2e"
+    "test:verify-url": "bash scripts/verify-url-selftest.sh",
+    "test": "npm run test:unit && npm run test:e2e && npm run test:verify-url"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.10.2",
