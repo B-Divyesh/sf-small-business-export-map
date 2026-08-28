@@ -173,13 +173,13 @@
       "degree": 20
     },
     {
-      "id": "tsconfig_compileroptions",
-      "label": "compilerOptions",
+      "id": "src_main_q",
+      "label": "q()",
       "degree": 12
     },
     {
-      "id": "src_main_q",
-      "label": "q()",
+      "id": "tsconfig_compileroptions",
+      "label": "compilerOptions",
       "degree": 12
     },
     {
@@ -191,11 +191,6 @@
       "id": "src_main_handlefile",
       "label": "handleFile()",
       "degree": 9
-    },
-    {
-      "id": "package_scripts",
-      "label": "scripts",
-      "degree": 8
     },
     {
       "id": "src_main_syncform",
@@ -213,6 +208,11 @@
       "degree": 8
     },
     {
+      "id": "package_scripts",
+      "label": "scripts",
+      "degree": 8
+    },
+    {
       "id": "src_main_esc",
       "label": "esc()",
       "degree": 7
@@ -221,7 +221,7 @@
   "surprises": [
     {
       "source": "handleFile()",
-      "target": "parseCsv()",
+      "target": "delimiterLabel()",
       "source_files": [
         "src/main.ts",
         "src/csv.ts"
@@ -232,7 +232,7 @@
     },
     {
       "source": "handleFile()",
-      "target": "delimiterLabel()",
+      "target": "parseCsv()",
       "source_files": [
         "src/main.ts",
         "src/csv.ts"
@@ -254,7 +254,7 @@
     },
     {
       "source": "bind()",
-      "target": "listProfiles()",
+      "target": "deleteProfile()",
       "source_files": [
         "src/main.ts",
         "src/db.ts"
@@ -264,7 +264,7 @@
       "why": "bridges separate communities"
     },
     {
-      "source": "saveProfile()",
+      "source": "bind()",
       "target": "listProfiles()",
       "source_files": [
         "src/main.ts",
