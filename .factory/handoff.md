@@ -1,106 +1,55 @@
-# Export Map — review 4 handoff
-
-## Reviewer work
-
-- Wrote `.factory/review-4.md`; no product code, configuration, or deployment files were changed.
-- Reviewed the live product in fresh 390 px and desktop Chromium contexts.
-- Used a clean clone at `39e6966e823785eb21ed2a7d50f0618d2d1dc076` and ran every literal claims-registry command. All 17 passed (14 browser and 3 unit claim tests).
-- Verified the live demo opens directly to a completed realistic sample, keeps the demo banner and controls visible, resets without changing saved data, uses only `demo:export-map` in the fresh demo context, and made only same-origin requests during the checked flow.
-- Checked live routes, metadata, focus/back behaviour, headers, checkout redirect, normal-route console output, and the designed 404.
-
-## Result and remaining work
-
-Review 4 is **FAIL** with four reopened blocking findings: `F-3-1` through `F-3-4`. They concern the unregistered no-accounting-inference safety promise, a bundled three-promise limitation sentence, payment legal jargon, and README browser/network implementation jargon. See `.factory/review-4.md` for exact locations and required rewrites/tests.
-
-## How to verify
-
-- Live demo: `https://small-business-export-map.sociobot.in/demo`
-- Full product test suite: `npm test`
-- Claim registry: run every `test` command in `.factory/claims.json` from a clean clone.
-
----
-
-# Previous polish 2 handoff (historical evidence)
+# Export Map — polish 4 handoff
 
 ## Delivered
 
-- Closed every finding from reviews 1 and 2, including all reopened and minor items.
-- Added an independently served `/demo`, sticky reset/exit banner, demo-storage cleanup, and local accountant-template import.
-- Added route-specific metadata, shared chrome, h1 focus/announcement, valid anchors, sitemap coverage, and a true HTTP 404.
-- Replaced residual transfer jargon, put privacy/offline/price facts on the first screen, and kept the risograph print-room identity.
-- Expanded `.factory/claims.json` to 17 claims with exactly one observable tagged test each.
-- Replaced weak download, paid, privacy, boundary, format, preview, backup, and license assertions with outcome checks.
-- Updated README, demo guide, copy audit, catalog description, and cumulative finding map.
+- Closed every finding from reviews 1–4, including the four review-3 findings reopened as blockers in review 4.
+- Registered and tested the no-accounting-inference guarantee with ambiguous VAT and tax-code data.
+- Split privacy, source-preservation, and accounting-choice assurances into separate plain lines.
+- Replaced payment legal jargon with a direct explanation of payment, receipts, and refunds.
+- Rewrote reader-facing README and Privacy storage/network language without IndexedDB, localStorage, or same-origin jargon.
+- Preserved the risograph print-room identity, one-click isolated sample, offline PWA class, real routes, mobile layout, and local-first workflow.
+- Updated the PWA cache to `export-map-v4`, the visible build marker to `polish-4`, and the catalog description.
 
-## Exact verification
+Finding-by-finding changes and evidence are in [.factory/polish-4.md](polish-4.md).
 
-- `npm test` — PASS:
-  - Vitest: 11 tests.
-  - Playwright: 18 tests.
-  - Production build and rendered URL self-test: PASS.
+## Verification
+
+- Implementation commit: `ad78a1f332dcc232d222a4fb05e6f9a1970a71f9`; no-inference readiness hardening: `dfe8ec0`.
+- `npm test` — PASS: 11 unit/contract tests, 19 Playwright tests, build, and rendered URL self-test.
 - `npx tsc --noEmit` — PASS.
-- `npm run build` — PASS; `dist/index.html` is present.
-- Final clean clone `/tmp/export-map-final.o0rWuj` from commit `97154c5`:
-  - `npm ci` — 0 vulnerabilities.
-  - Every literal command in `.factory/claims.json` — 17/17 PASS.
-  - The complete `npm test` suite also passed in that clone.
-- Accessibility:
-  - Playwright Axe on home, demo, privacy, terms, and 404 at 390 px — 0 serious/critical findings.
-  - Keyboard focus, horizontal preview reach, 200% text, sticky controls, and route focus tests — PASS.
-- Privacy/offline:
-  - Complete sample and real-file flows issued only same-origin requests.
-  - Primed `/demo` reloaded offline with the finished result and `Offline · local mode`.
-  - License tokens were absent from Cache Storage.
-- Performance:
-  - Lighthouse mobile: performance 99, accessibility 100, best practices 100, SEO 100.
-  - LCP 1.9 s, CLS 0, TBT 0 ms.
-  - Initial app JS 32.28 kB raw / 10.97 kB gzip; CSS 12.47 kB raw / 3.57 kB gzip.
+- `npm run build` — PASS; `dist/index.html` exists.
+- Clean remote clone `/tmp/export-map-polish4.tEIWEK` at `ad78a1f332dcc232d222a4fb05e6f9a1970a71f9`: `npm ci` found 0 vulnerabilities; every literal command in the 18-entry claims registry passed independently.
+- The stricter final `@claim:no-accounting-inference` test also passed after waiting for the visible file-ready state.
+- Accessibility: Playwright Axe on home, demo, Privacy, Terms, and 404 at 390 px found 0 serious/critical issues. Keyboard preview reach, route focus, and 200% text passed.
+- Privacy/offline: real-file traffic had only GET requests with no request body; demo traffic used only the product origin; fresh demo storage contained only `demo:export-map`; primed `/demo` reloaded offline with the completed sample.
+- Performance: Lighthouse mobile 99 performance, 100 accessibility, 100 best practices, 100 SEO; LCP 2.0 s, CLS 0, TBT 0 ms.
+- Budgets: initial app JS 32.32 kB raw / 10.98 kB gzip; CSS 12.55 kB raw / 3.59 kB gzip; mobile hero 34.13 kB.
 
 ## Deployment and live evidence
 
-- Repair and evidence commits pushed to `main`: `f55bfe8`, `002625c`, `97154c5` (this final evidence sync follows them).
-- Static deployment id: `90dd6691-2787-41bb-9be2-88a7e3890559`.
+- Static deployment id: `80580c13-974a-4599-9153-2ae3607dc381`.
 - Live origin: <https://small-business-export-map.sociobot.in>.
-- Live status: `/`, `/demo`, `/privacy/`, `/terms/` → 200; `/missing-review-route` → 404.
-- Live `/demo` and `/?demo=1` expose `Demo — Export Map` metadata and the demo canonical URL.
-- Live security headers, manifest MIME, favicon, and immutable hashed-JS caching passed.
+- `/`, `/demo`, `/privacy/`, `/terms/` return 200; `/missing-polish-4-route` returns 404.
 - `npm run verify:url -- https://small-business-export-map.sociobot.in/` passed.
-- Cold valid-route browser pass reported no console or page errors.
-- Live 390 px first-screen facts ended at 759.3 px inside an 844 px viewport.
-- Live scrolled demo banner remained at viewport top; reset and exit stayed visible.
-- Live template import wrote one demo profile; Start for real cleared the demo profile count to zero.
-- Live offline reload and live Axe check passed.
+- Cold 390 px first-screen facts ended at 759.3125 px inside an 844 px viewport.
+- Cold `/demo` showed the completed sample, sticky banner, Reset demo, Start for real, both downloads, and only `demo:export-map` in a fresh context.
+- The live no-inference check preserved `20`, `A20`, and `20` as text until explicit user mapping.
+- Live home and demo Axe checks found 0 serious/critical issues; offline reload passed; no unexpected console errors occurred.
+- Live headers include CSP, Permissions-Policy, nosniff, referrer policy, and HSTS. Checkout returns 303 to `checkout.dodopayments.com`.
+- Screenshots: [first screen](evidence/polish-4-live-landing-390.png), [demo](evidence/polish-4-live-demo-390.png), [limitations](evidence/polish-4-live-limitations-1440.png), [purchase](evidence/polish-4-live-payment-1440.png).
 
-Evidence and finding mapping: [.factory/polish-2.md](polish-2.md).
+## Run and verify
+
+```sh
+npm ci
+npm test
+npx tsc --noEmit
+npm run build
+npm run verify:url -- https://small-business-export-map.sociobot.in/
+```
+
+Run every `test` value in `.factory/claims.json` independently for the claims contract.
 
 ## Known gaps
 
-None. No payment was made during verification; checkout terms were read from the live hosted page, and entitlement behavior used recorded valid/revoked API fixtures.
-
-## Review 3 handoff — 2026-08-28
-
-### Work completed
-
-- Performed a third independent, adversarial live review without changing product code.
-- Added `.factory/review-3.md`: cold phone/desktop read, complete landing/README copy audit, demo/privacy/offline evidence, claim-command results, structure/accessibility checks, and verification of every earlier finding.
-- Ran the current 17 registered claims one by one from fresh clone `/tmp/export-map-review3.Rsvw0R`; all passed.
-
-### Verification
-
-- `npm ci` in the clean clone: pass, zero vulnerabilities.
-- All 17 literal `.factory/claims.json` commands: pass.
-- `npm test`: unit suite reported 11/11 passing tests; the 18-test browser suite ran without a recorded failure during the review.
-- `npm run build`, `npx tsc --noEmit`, and `npm run verify:url -- https://small-business-export-map.sociobot.in/`: pass.
-- Live `/`, `/demo`, `/privacy/`, `/terms/`: 200. Live unknown route: 404.
-- Live 390 px and desktop first-screen, sticky demo sandbox, reset, same-origin request log, offline reload, route metadata, focus, console, and original visual identity: verified.
-
-### Known gaps / next steps
-
-Review 3 is **FAIL** with four documentation/copy-contract findings, not a broken workflow:
-
-1. Register and test the visible no-accounting-inference guarantee.
-2. Split the three-part limitation sentence on the landing page.
-3. Replace “merchant of record” with plain purchase language.
-4. Translate README `IndexedDB`, storage-key, and `same-origin` privacy phrasing for the owner audience.
-
-No payment was made. Checkout verification used the live redirect and hosted checkout wording; entitlement verification used recorded browser-route responses.
+None. No payment was made during verification; the live hosted-checkout redirect was checked without purchase, and entitlement behavior used recorded valid/revoked responses.
