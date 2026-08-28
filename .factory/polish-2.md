@@ -45,7 +45,7 @@ Candidate repaired: `d8d891f640242edfbd74eb0b0a142e1aaf8906e9`. Review source: `
 
 - `npm test`: 11 unit/contract tests, production build, 18 Playwright tests, and rendered URL self-test passed.
 - `npx tsc --noEmit` and `npm run build` passed; `dist/index.html` exists.
-- Every exact claim command passed from `/tmp/export-map-polish2.tlWgaD`.
+- Every exact claim command and the full suite passed from final clone `/tmp/export-map-final.o0rWuj` at `97154c5`.
 - Lighthouse results are recorded in [performance-polish-2.txt](evidence/performance-polish-2.txt).
 - Deployment `90dd6691-2787-41bb-9be2-88a7e3890559` succeeded.
 - Cold live checks passed for first-screen copy, sticky demo, both downloads, reset/exit isolation, offline reload, metadata, focus, headers, console, Axe, checkout redirect, and hard 404.

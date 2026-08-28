@@ -1,5 +1,5 @@
-Clean clone: /tmp/export-map-polish2.tlWgaD
-Source commit: f55bfe8
+Final clean clone: /tmp/export-map-final.o0rWuj
+Source commit: 97154c5
 Install: npm ci — 60 packages, 0 vulnerabilities
 
 PASS demo-isolation
@@ -21,3 +21,4 @@ PASS pro-license
 PASS template-import
 
 Each line above is the result of running the literal `test` command from .factory/claims.json independently.
+The full `npm test` suite then passed in the same clean clone: 11 unit/contract tests, 18 browser tests, and the rendered URL verifier.

@@ -18,9 +18,10 @@
   - Production build and rendered URL self-test: PASS.
 - `npx tsc --noEmit` — PASS.
 - `npm run build` — PASS; `dist/index.html` is present.
-- Clean clone `/tmp/export-map-polish2.tlWgaD`:
+- Final clean clone `/tmp/export-map-final.o0rWuj` from commit `97154c5`:
   - `npm ci` — 0 vulnerabilities.
   - Every literal command in `.factory/claims.json` — 17/17 PASS.
+  - The complete `npm test` suite also passed in that clone.
 - Accessibility:
   - Playwright Axe on home, demo, privacy, terms, and 404 at 390 px — 0 serious/critical findings.
   - Keyboard focus, horizontal preview reach, 200% text, sticky controls, and route focus tests — PASS.
@@ -35,7 +36,7 @@
 
 ## Deployment and live evidence
 
-- Repair commits pushed to `main`: `f55bfe8`, `002625c` (final evidence commit follows this handoff update).
+- Repair and evidence commits pushed to `main`: `f55bfe8`, `002625c`, `97154c5` (this final evidence sync follows them).
 - Static deployment id: `90dd6691-2787-41bb-9be2-88a7e3890559`.
 - Live origin: <https://small-business-export-map.sociobot.in>.
 - Live status: `/`, `/demo`, `/privacy/`, `/terms/` → 200; `/missing-review-route` → 404.
