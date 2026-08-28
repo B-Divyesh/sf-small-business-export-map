@@ -25,7 +25,7 @@ marks attention, and cobalt traces the safe route from source to recipient.
 | `ink-muted` | `#5C6158` | secondary copy (7:1 on paper) |
 | `cobalt` | `#1747A6` | links, focus, selected route |
 | `cobalt-dark` | `#10357F` | interactive hover |
-| `coral` | `#C64332` | warnings and physical registration marks |
+| `coral` | `#B1382C` | warnings and physical registration marks (5.1:1 on paper) |
 | `moss` | `#2D6B4E` | passed checks and completion |
 | `ochre` | `#8B5A12` | caution state |
 | `danger` | `#A52D29` | errors and destructive actions |

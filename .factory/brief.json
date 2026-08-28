@@ -1,0 +1,11 @@
+{
+  "slug": "small-business-export-map",
+  "title": "Export Map",
+  "territory": "utilities",
+  "user": "Owners of tiny businesses who need a dependable, accountant-friendly export of admin records without discovering incompatible CSV fields at handoff time.",
+  "smallest_useful_product": "Offline CSV preflight tool with saved recipient profiles, delimiter/decimal/date checks, required-column mapping, visible transformations, and a handoff manifest.",
+  "success_measure": "At least 90% of pilot exports pass the receiving accountant's import on the first attempt, with every changed field represented in the manifest.",
+  "artifact_class": "pwa-offline",
+  "monetization": "one-time",
+  "constraints": "Process files in-browser; preserve originals; locale conversion must be explicit and reversible; never infer tax/accounting semantics from ambiguous columns."
+}
