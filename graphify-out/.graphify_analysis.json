@@ -1,6 +1,40 @@
 {
   "communities": {
     "0": [
+      "src_main",
+      "src_main_bind",
+      "src_main_dates",
+      "src_main_download",
+      "src_main_esc",
+      "src_main_focusroute",
+      "src_main_handlefile",
+      "src_main_initlicense",
+      "src_main_loadsample",
+      "src_main_makemappingaccessible",
+      "src_main_manifest",
+      "src_main_message",
+      "src_main_notfound",
+      "src_main_opt",
+      "src_main_product",
+      "src_main_profile",
+      "src_main_profiles",
+      "src_main_q",
+      "src_main_readform",
+      "src_main_registerserviceworker",
+      "src_main_rendermappings",
+      "src_main_renderreview",
+      "src_main_sampleprofile",
+      "src_main_saveprofile",
+      "src_main_setlicenseui",
+      "src_main_setroutemetadata",
+      "src_main_shell",
+      "src_main_syncform",
+      "src_main_updatemapping",
+      "src_main_updatenetwork",
+      "src_main_validprofile",
+      "src_main_verifylicense"
+    ],
+    "1": [
       "src_csv",
       "src_csv_candidates",
       "src_csv_delimiterlabel",
@@ -10,6 +44,7 @@
       "src_csv_parsecsv",
       "src_csv_parsedate",
       "src_csv_parserows",
+      "src_csv_parsetemplateheaders",
       "src_csv_quote",
       "src_csv_transformcsv",
       "src_types",
@@ -25,7 +60,7 @@
       "tests_unit_csv_test",
       "tests_unit_csv_test_profile"
     ],
-    "1": [
+    "2": [
       "ref_dom",
       "ref_dom_iterable",
       "ref_es2022",
@@ -49,7 +84,7 @@
       "tsconfig_compileroptions_usedefineforclassfields",
       "tsconfig_include"
     ],
-    "2": [
+    "3": [
       "axe_core_playwright",
       "package_devdependencies",
       "package_devdependencies_axe_core_playwright",
@@ -66,7 +101,7 @@
       "vite",
       "vitest"
     ],
-    "3": [
+    "4": [
       "package",
       "package_name",
       "package_private",
@@ -77,20 +112,10 @@
       "package_scripts_test",
       "package_scripts_test_e2e",
       "package_scripts_test_unit",
+      "package_scripts_test_verify_url",
       "package_scripts_verify_url",
       "package_type",
       "package_version"
-    ],
-    "4": [
-      "src_main",
-      "src_main_dates",
-      "src_main_notfound",
-      "src_main_product",
-      "src_main_profile",
-      "src_main_profiles",
-      "src_main_registerserviceworker",
-      "src_main_shell",
-      "src_main_updatenetwork"
     ],
     "5": [
       "src_db",
@@ -99,83 +124,76 @@
       "src_db_opendb",
       "src_db_putprofile",
       "src_db_replaceprofiles",
-      "src_db_setdemostorage"
+      "src_db_setdemostorage",
+      "src_main_blankprofile",
+      "src_main_importaccountanttemplate"
     ],
     "6": [
-      "src_main_esc",
-      "src_main_handlefile",
-      "src_main_loadsample",
-      "src_main_opt",
-      "src_main_rendermappings",
-      "src_main_sampleprofile",
-      "src_main_syncform"
+      "scripts_test_server",
+      "scripts_test_server_headers",
+      "scripts_test_server_mime",
+      "scripts_test_server_root"
     ],
     "7": [
-      "src_main_bind",
-      "src_main_blankprofile",
-      "src_main_download",
-      "src_main_manifest",
-      "src_main_updatemapping",
-      "src_main_validprofile"
+      "tests_e2e_app_spec",
+      "tests_e2e_app_spec_downloadtext",
+      "tests_e2e_app_spec_opendemo",
+      "tests_e2e_app_spec_saveprofile"
     ],
     "8": [
-      "src_main_message",
-      "src_main_q",
-      "src_main_readform",
-      "src_main_renderreview",
-      "src_main_saveprofile"
-    ],
-    "9": [
-      "src_main_initlicense",
-      "src_main_setlicenseui",
-      "src_main_verifylicense"
-    ],
-    "10": [
       "public_sw",
       "public_sw_shell"
     ],
+    "9": [
+      "scripts_verify_url_errors",
+      "scripts_verify_url_mjs_scripts_verify_url"
+    ],
+    "10": [
+      "scripts_verify_url_selftest",
+      "scripts_verify_url_selftest_sh__entry"
+    ],
     "11": [
-      "scripts_verify_url",
-      "scripts_verify_url_sh__entry"
+      "scripts_verify_url_sh__entry",
+      "scripts_verify_url_sh_scripts_verify_url"
     ],
     "12": [
-      "tests_e2e_app_spec",
-      "tests_e2e_app_spec_opendemo"
+      "src_route_focus",
+      "src_route_focus_focusrouteheading"
     ],
     "13": [
-      "playwright_config"
+      "tests_unit_claims_test",
+      "tests_unit_claims_test_claim"
     ],
     "14": [
+      "playwright_config"
+    ],
+    "15": [
       "vite_config"
     ]
   },
   "cohesion": {
-    "0": 0.16600790513833993,
-    "1": 0.09090909090909091,
-    "2": 0.13333333333333333,
-    "3": 0.15384615384615385,
-    "4": 0.2777777777777778,
-    "5": 0.47619047619047616,
-    "6": 0.47619047619047616,
-    "7": 0.3333333333333333,
-    "8": 0.8,
+    "0": 0.1693548387096774,
+    "1": 0.17391304347826086,
+    "2": 0.09090909090909091,
+    "3": 0.13333333333333333,
+    "4": 0.14285714285714285,
+    "5": 0.3611111111111111,
+    "6": 0.5,
+    "7": 0.5,
+    "8": 1.0,
     "9": 1.0,
     "10": 1.0,
     "11": 1.0,
     "12": 1.0,
     "13": 1.0,
-    "14": 1.0
+    "14": 1.0,
+    "15": 1.0
   },
   "gods": [
     {
       "id": "src_main_bind",
       "label": "bind()",
-      "degree": 20
-    },
-    {
-      "id": "src_main_q",
-      "label": "q()",
-      "degree": 12
+      "degree": 21
     },
     {
       "id": "tsconfig_compileroptions",
@@ -183,8 +201,23 @@
       "degree": 12
     },
     {
+      "id": "src_main_q",
+      "label": "q()",
+      "degree": 12
+    },
+    {
+      "id": "package_scripts",
+      "label": "scripts",
+      "degree": 9
+    },
+    {
       "id": "src_csv_transformcsv",
       "label": "transformCsv()",
+      "degree": 9
+    },
+    {
+      "id": "src_main_syncform",
+      "label": "syncForm()",
       "degree": 9
     },
     {
@@ -193,8 +226,8 @@
       "degree": 9
     },
     {
-      "id": "src_main_syncform",
-      "label": "syncForm()",
+      "id": "src_main_message",
+      "label": "message()",
       "degree": 8
     },
     {
@@ -203,55 +236,12 @@
       "degree": 8
     },
     {
-      "id": "src_main_saveprofile",
-      "label": "saveProfile()",
+      "id": "src_main_importaccountanttemplate",
+      "label": "importAccountantTemplate()",
       "degree": 8
-    },
-    {
-      "id": "package_scripts",
-      "label": "scripts",
-      "degree": 8
-    },
-    {
-      "id": "src_main_esc",
-      "label": "esc()",
-      "degree": 7
     }
   ],
   "surprises": [
-    {
-      "source": "handleFile()",
-      "target": "delimiterLabel()",
-      "source_files": [
-        "src/main.ts",
-        "src/csv.ts"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "calls",
-      "why": "bridges separate communities"
-    },
-    {
-      "source": "handleFile()",
-      "target": "parseCsv()",
-      "source_files": [
-        "src/main.ts",
-        "src/csv.ts"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "calls",
-      "why": "bridges separate communities"
-    },
-    {
-      "source": "renderReview()",
-      "target": "transformCsv()",
-      "source_files": [
-        "src/main.ts",
-        "src/csv.ts"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "calls",
-      "why": "bridges separate communities"
-    },
     {
       "source": "bind()",
       "target": "deleteProfile()",
@@ -266,6 +256,39 @@
     {
       "source": "bind()",
       "target": "listProfiles()",
+      "source_files": [
+        "src/main.ts",
+        "src/db.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "saveProfile()",
+      "target": "listProfiles()",
+      "source_files": [
+        "src/main.ts",
+        "src/db.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "saveProfile()",
+      "target": "putProfile()",
+      "source_files": [
+        "src/main.ts",
+        "src/db.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "bind()",
+      "target": "replaceProfiles()",
       "source_files": [
         "src/main.ts",
         "src/db.ts"
