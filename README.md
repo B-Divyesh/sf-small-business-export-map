@@ -7,14 +7,14 @@ Try the finished sample at <https://small-business-export-map.sociobot.in/demo>.
 ## What it does
 
 - Shows a checked preview and downloads a prepared CSV with every source row.
-- Downloads a JSON change record with the source fingerprint, checks, transformations, and reversal instructions.
+- Downloads a JSON change record with source details, checks, transformations, and reversal instructions.
 - Supports comma, semicolon, tab, and pipe separators.
 - Converts two decimal marks and four date formats only on columns you mark.
 - Imports the ordered header row from an accountant’s CSV template.
 - Saves two recipient profiles for free. A one-time US$19 purchase saves more profiles.
 - Exports and imports complete profile backups.
 
-The sample is separate from real profiles. It uses the `demo:export-map` IndexedDB database; real profiles use `export-map`.
+The sample uses separate browser storage, so it never changes saved profiles.
 
 ## Run and test
 
@@ -33,9 +33,9 @@ Static hosting must preserve `/demo`, `/privacy/`, `/terms/`, `404.html`, the se
 
 ## Privacy and purchase
 
-CSV preparation happens on the device and makes only same-origin requests. Profile data is stored in IndexedDB.
+Preparing a CSV does not send its contents anywhere. Saved profiles stay in this browser.
 
-A returned or pasted license token is stored in localStorage. The app checks it with `api.sociobot.in` at most once daily.
+A returned or pasted license token is saved in this browser. The app sends it to Sociobot for a check at most once daily.
 
 Sociobot/Dodo hosts the US$19 one-time checkout. See [Privacy](https://small-business-export-map.sociobot.in/privacy/) and [Terms](https://small-business-export-map.sociobot.in/terms/).
 

@@ -84,7 +84,11 @@ test('@claim:privacy-demo keeps the complete sample flow same-origin', async ({ 
 test('@claim:privacy-real-workflow keeps a real CSV flow same-origin', async ({ page }) => {
   await page.emulateMedia({ reducedMotion:'reduce' });
   const external: string[] = [];
-  page.on('request', request => { if (!request.url().startsWith('http://127.0.0.1:4173')) external.push(request.url()); });
+  const requests: Array<{method:string;body:string|null}> = [];
+  page.on('request', request => {
+    requests.push({method:request.method(),body:request.postData()});
+    if (!request.url().startsWith('http://127.0.0.1:4173')) external.push(request.url());
+  });
   await page.goto('/');
   await page.locator('#csv-file').setInputFiles({ name:'real.csv', mimeType:'text/csv', buffer:Buffer.from('Date,Amount\n2026-08-28,12.50') });
   await page.getByRole('button', { name:'Use source headers' }).click();
@@ -95,6 +99,8 @@ test('@claim:privacy-real-workflow keeps a real CSV flow same-origin', async ({ 
     await event;
   }
   expect(external).toEqual([]);
+  expect(requests.every(request=>request.method==='GET'&&request.body===null)).toBe(true);
+  expect(requests.some(request=>request.body?.includes('12.50'))).toBe(false);
 });
 
 test('@claim:profile-persistence saves a recipient profile in IndexedDB across reloads', async ({ page }) => {
@@ -143,6 +149,27 @@ test('@claim:profile-limit keeps the free saved-profile limit at two', async ({ 
   await expect(page.locator('#profile-select option')).toHaveCount(3);
 });
 
+test('@claim:no-accounting-inference leaves ambiguous tax data unchanged until the user maps it', async ({ page }) => {
+  await openDemo(page);
+  await page.getByRole('button',{name:'Create recipient profile'}).click();
+  await expect(page.locator('#mapping-body tr')).toHaveCount(0);
+  await page.locator('#csv-file').setInputFiles({
+    name:'ambiguous-tax.csv',
+    mimeType:'text/csv',
+    buffer:Buffer.from('VAT,Tax code,Amount\n20,A20,20'),
+  });
+  await expect(page.getByText('You choose the accounting meaning.').first()).toBeVisible();
+  await page.getByRole('button',{name:'Use source headers'}).click();
+  await expect(page.locator('#mapping-body tr')).toHaveCount(3);
+  expect(await page.locator('#mapping-body [data-key="target"]').evaluateAll(inputs=>inputs.map(input=>(input as HTMLInputElement).value))).toEqual(['VAT','Tax code','Amount']);
+  expect(await page.locator('#mapping-body [data-key="kind"]').evaluateAll(selects=>selects.map(select=>(select as HTMLSelectElement).value))).toEqual(['text','text','text']);
+  await page.getByRole('button',{name:'Check output'}).click();
+  expect(await page.locator('#preview tbody tr').first().locator('td').allTextContents()).toEqual(['20','A20','20']);
+  const event=page.waitForEvent('download');
+  await page.getByRole('button',{name:'Download CSV'}).click();
+  expect((await downloadText(await event)).replace(/^\uFEFF/,'').trim()).toBe('VAT,Tax code,Amount\r\n20,A20,20');
+});
+
 test('@claim:preview-full-download caps preview at eight and downloads every row once', async ({ page }) => {
   const rows=Array.from({length:11},(_,i)=>`ROW-${i+1}`).join('\n');
   await page.goto('/');
@@ -179,7 +206,7 @@ test('@claim:checkout-host sends the US$19 one-time purchase to Sociobot/Dodo', 
   await page.goto('/');
   await expect(page.getByRole('heading',{name:'Save unlimited recipient profiles'})).toBeVisible();
   await expect(page.locator('#pro')).toContainText('one-time US$19');
-  await expect(page.locator('#pro')).toContainText('Sociobot/Dodo is the merchant of record');
+  await expect(page.locator('#pro')).toContainText('Sociobot/Dodo takes payment and handles receipts and refunds');
   const response=await request.get('https://api.sociobot.in/api/v1/products/small-business-export-map/checkout',{maxRedirects:0});
   expect(response.status()).toBe(303);const location=response.headers().location;expect(location).toMatch(/^https:\/\/checkout\.dodopayments\.com\//);
   const checkout=await request.get(location);const checkoutHtml=await checkout.text();expect(checkoutHtml).toContain('Small Business Export Map');expect(checkoutHtml).toContain('$19.00');expect(checkoutHtml).toContain('One-time unlock');expect(checkoutHtml).toContain('Sociobot | Checkout');
@@ -219,7 +246,7 @@ test('demo banner stays visible with reset and exit controls throughout the mobi
 test('routes return real statuses, complete metadata, valid links, and restore h1 focus', async ({ page, request }) => {
   const browserErrors:string[]=[];page.on('console',message=>{if(message.type()==='error')browserErrors.push(message.text());});page.on('pageerror',error=>browserErrors.push(error.message));
   const routes=[['/','Export Map — prepare CSVs for your accountant','https://small-business-export-map.sociobot.in/'],['/demo','Demo — Export Map','https://small-business-export-map.sociobot.in/demo'],['/privacy/','Privacy — Export Map','https://small-business-export-map.sociobot.in/privacy/'],['/terms/','Terms — Export Map','https://small-business-export-map.sociobot.in/terms/']];
-  for(const [path,title,canonical] of routes){const response=await page.goto(path);expect(response?.status()).toBe(200);await expect(page).toHaveTitle(title);await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href',canonical);await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content',canonical);await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute('content',title);await expect(page.locator('h1')).toBeFocused();expect(await page.locator('header .brand-mark').count()).toBe(1);await expect(page.locator('footer')).toContainText('build polish-2');}
+  for(const [path,title,canonical] of routes){const response=await page.goto(path);expect(response?.status()).toBe(200);await expect(page).toHaveTitle(title);await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href',canonical);await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content',canonical);await expect(page.locator('meta[name="twitter:title"]')).toHaveAttribute('content',title);await expect(page.locator('h1')).toBeFocused();expect(await page.locator('header .brand-mark').count()).toBe(1);await expect(page.locator('footer')).toContainText('build polish-4');}
   await page.goto('/?demo=1');await expect(page).toHaveTitle('Demo — Export Map');await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href','https://small-business-export-map.sociobot.in/demo');
   expect(browserErrors).toEqual([]);browserErrors.length=0;
   const missing=await page.goto('/missing-review-route');expect(missing?.status()).toBe(404);await expect(page).toHaveTitle('Page not found — Export Map');await expect(page.getByRole('heading',{name:'This page does not exist.'})).toBeFocused();await expect(page.getByRole('link',{name:'Prepare a CSV'})).toHaveAttribute('href','/#workspace');

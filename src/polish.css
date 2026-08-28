@@ -1,5 +1,12 @@
-/* Round-two refinements preserve the print-room system while keeping demo
-   state and wide data controls usable on small screens. */
+/* Perfection-loop refinements preserve the print-room system while keeping
+   claims, demo state, and wide data controls clear on small screens. */
+.privacy-summary ul {
+  display: grid;
+  gap: .5rem;
+  max-width: 70ch;
+  padding-left: 1.4rem;
+}
+
 .demo-banner {
   position: sticky;
   top: 0;

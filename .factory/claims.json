@@ -29,10 +29,10 @@
   },
   {
     "id": "privacy-real-workflow",
-    "claim": "A real CSV stays on the device; its complete preparation flow makes only same-origin requests.",
+    "claim": "Preparing a real CSV does not send its contents anywhere.",
     "where": "First screen, privacy page, README",
     "test": "npm run test:e2e -- --grep @claim:privacy-real-workflow",
-    "sandbox": "Fresh context; select a generated local CSV, map, preview, download both outputs, and reject every non-local origin."
+    "sandbox": "Fresh context; select a generated local CSV, map, preview, download both outputs, and reject external, non-GET, or body-bearing requests."
   },
   {
     "id": "profile-persistence",
@@ -61,6 +61,13 @@
     "where": "First screen, profile status, purchase section, README",
     "test": "npm run test:e2e -- --grep @claim:profile-limit",
     "sandbox": "Fresh context without a license; save two profiles and assert the third is rejected."
+  },
+  {
+    "id": "no-accounting-inference",
+    "claim": "The app does not create accountant columns or assign accounting types until the user chooses them.",
+    "where": "Accountant-column guidance, privacy summary, terms",
+    "test": "npm run test:e2e -- --grep @claim:no-accounting-inference",
+    "sandbox": "Fresh context with VAT, Tax code, and 20 values; assert no initial mappings, explicit user mapping, text types, and unchanged downloaded values."
   },
   {
     "id": "explicit-formatting",
@@ -99,7 +106,7 @@
   },
   {
     "id": "checkout-host",
-    "claim": "The US$19 one-time purchase opens Sociobot/Dodo checkout.",
+    "claim": "The US$19 one-time purchase opens Sociobot/Dodo checkout, which takes payment and handles receipts and refunds.",
     "where": "Purchase section, terms, README",
     "test": "npm run test:e2e -- --grep @claim:checkout-host",
     "sandbox": "Inspect price and merchant copy, then require the production checkout endpoint to redirect to checkout.dodopayments.com without payment."

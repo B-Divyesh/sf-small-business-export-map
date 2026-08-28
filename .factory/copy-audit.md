@@ -1,6 +1,6 @@
-# Copy audit — polish 2
+# Copy audit — polish 4
 
-Word counts treat hyphenated terms and numbers as one word. No sentence exceeds 22 words. No banned marketing term remains.
+Word counts treat hyphenated terms and numbers as one word. No sentence exceeds 22 words. No banned marketing term or unresolved review phrase remains.
 
 ## First screen
 
@@ -28,7 +28,7 @@ Word counts treat hyphenated terms and numbers as one word. No sentence exceeds 
 | A recipient profile remembers the columns and formats one accountant needs. | 11 | term definition |
 | Add an apostrophe before values starting with =, +, or @ in the downloaded CSV. | 14 | `formula-protection` |
 | Use formatting only when your accountant specified it. | 8 | `explicit-formatting` |
-| Export Map does not guess accounting meaning. | 7 | limitation |
+| You choose the accounting meaning. | 5 | `no-accounting-inference` |
 | Add required columns, copy your source headers, or import your accountant’s template. | 12 | empty-state action |
 | Preview shows no more than eight rows. | 7 | `preview-full-download` |
 | The downloaded CSV contains every row. | 6 | `preview-full-download` |
@@ -47,11 +47,25 @@ Word counts treat hyphenated terms and numbers as one word. No sentence exceeds 
 | The file is read on this device. | 7 | `privacy-real-workflow` |
 | Name columns and choose separators, numbers, and dates. | 8 | `core-format-matrix` |
 | Review the CSV with a record of each change. | 9 | `csv-change-record` |
-| It does not upload your CSV, change the source file, or decide tax and accounting meaning. | 16 | `privacy-real-workflow`, `source-preservation`, `explicit-formatting` |
+| Your CSV is not uploaded. | 5 | `privacy-real-workflow` |
+| The original file is not changed. | 6 | `source-preservation` |
+| You choose the accounting meaning. | 5 | `no-accounting-inference` |
 | The free version saves two profiles. | 6 | `profile-limit` |
 | Export Map Pro saves unlimited profiles for a one-time US$19 purchase. | 11 | `checkout-host`, `pro-license` |
-| Sociobot/Dodo is the merchant of record. | 6 | `checkout-host` |
+| Sociobot/Dodo takes payment and handles receipts and refunds. | 8 | `checkout-host` |
 | Prepare CSVs on this device. | 5 | `privacy-real-workflow` |
+
+## README changes
+
+| Copy | Words | Purpose or claim |
+| --- | ---: | --- |
+| Downloads a JSON change record with source details, checks, transformations, and reversal instructions. | 13 | `csv-change-record` |
+| The sample uses separate browser storage, so it never changes saved profiles. | 11 | `demo-isolation` |
+| Preparing a CSV does not send its contents anywhere. | 9 | `privacy-real-workflow` |
+| Saved profiles stay in this browser. | 6 | `profile-persistence` |
+| A returned or pasted license token is saved in this browser. | 11 | `pro-license` |
+| The app sends it to Sociobot for a check at most once daily. | 13 | `pro-license` |
+| Sociobot/Dodo hosts the US$19 one-time checkout. | 6 | `checkout-host` |
 
 ## Errors and feedback
 

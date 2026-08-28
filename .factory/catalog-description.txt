@@ -1,1 +1,1 @@
-Prepare CSVs with the columns, numbers, and dates your accountant requested.
+Prepare CSVs with the columns, separators, numbers, and dates your accountant requested.
