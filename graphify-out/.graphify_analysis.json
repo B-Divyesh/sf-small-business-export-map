@@ -196,23 +196,18 @@
       "degree": 21
     },
     {
-      "id": "tsconfig_compileroptions",
-      "label": "compilerOptions",
-      "degree": 12
-    },
-    {
       "id": "src_main_q",
       "label": "q()",
       "degree": 12
     },
     {
-      "id": "package_scripts",
-      "label": "scripts",
-      "degree": 9
+      "id": "tsconfig_compileroptions",
+      "label": "compilerOptions",
+      "degree": 12
     },
     {
-      "id": "src_csv_transformcsv",
-      "label": "transformCsv()",
+      "id": "src_main_handlefile",
+      "label": "handleFile()",
       "degree": 9
     },
     {
@@ -221,8 +216,13 @@
       "degree": 9
     },
     {
-      "id": "src_main_handlefile",
-      "label": "handleFile()",
+      "id": "src_csv_transformcsv",
+      "label": "transformCsv()",
+      "degree": 9
+    },
+    {
+      "id": "package_scripts",
+      "label": "scripts",
       "degree": 9
     },
     {
@@ -236,8 +236,8 @@
       "degree": 8
     },
     {
-      "id": "src_main_importaccountanttemplate",
-      "label": "importAccountantTemplate()",
+      "id": "src_main_saveprofile",
+      "label": "saveProfile()",
       "degree": 8
     }
   ],
@@ -265,33 +265,33 @@
       "why": "bridges separate communities"
     },
     {
-      "source": "saveProfile()",
-      "target": "listProfiles()",
-      "source_files": [
-        "src/main.ts",
-        "src/db.ts"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "calls",
-      "why": "bridges separate communities"
-    },
-    {
-      "source": "saveProfile()",
-      "target": "putProfile()",
-      "source_files": [
-        "src/main.ts",
-        "src/db.ts"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "calls",
-      "why": "bridges separate communities"
-    },
-    {
       "source": "bind()",
       "target": "replaceProfiles()",
       "source_files": [
         "src/main.ts",
         "src/db.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "handleFile()",
+      "target": "delimiterLabel()",
+      "source_files": [
+        "src/main.ts",
+        "src/csv.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "handleFile()",
+      "target": "parseCsv()",
+      "source_files": [
+        "src/main.ts",
+        "src/csv.ts"
       ],
       "confidence": "EXTRACTED",
       "relation": "calls",
