@@ -1,3 +1,34 @@
+# Review-1 handoff — FAIL
+
+## What was done
+
+Completed the requested adversarial first-read review without changing product code. The report is `.factory/review-1.md`.
+
+## Verification
+
+- Opened live site in fresh Chromium at 390×844 and 1440×844.
+- Checked `/demo`, `/?demo=1`, legal routes, an unknown route, favicon, first-screen copy, requests, title/H1, and console.
+- Read brief, design, README, source, service worker, handoff, and independent verification history.
+- Confirmed checkout endpoint HTTP 404: `{"error":"enabled factory product","status":404}`.
+- Ran `npm ci` and `npm test`: 5 unit tests, build, and 4 E2E tests pass.
+
+## Current gaps
+
+FAIL: missing isolated sample demo, no claims registry/tests, unavailable checkout, and all earlier independent-verification defects remain. Exact evidence and fixes are in `.factory/review-1.md`.
+
+## Retest
+
+```sh
+npm ci
+npm test
+```
+
+Then run every claims command from clean state and the 390 px `/demo` workflow: reset/isolation, six-column review, invalid backup rejection, quoted CSV, cache keys, checkout, and deployed route/header checks.
+
+---
+
+## Prior handoff retained for review history
+
 # Export Map v1 verification handoff — FAIL
 
 ## Independent verification result (2026-08-28)
