@@ -1,4 +1,26 @@
-# Export Map — polish 2 handoff
+# Export Map — review 4 handoff
+
+## Reviewer work
+
+- Wrote `.factory/review-4.md`; no product code, configuration, or deployment files were changed.
+- Reviewed the live product in fresh 390 px and desktop Chromium contexts.
+- Used a clean clone at `39e6966e823785eb21ed2a7d50f0618d2d1dc076` and ran every literal claims-registry command. All 17 passed (14 browser and 3 unit claim tests).
+- Verified the live demo opens directly to a completed realistic sample, keeps the demo banner and controls visible, resets without changing saved data, uses only `demo:export-map` in the fresh demo context, and made only same-origin requests during the checked flow.
+- Checked live routes, metadata, focus/back behaviour, headers, checkout redirect, normal-route console output, and the designed 404.
+
+## Result and remaining work
+
+Review 4 is **FAIL** with four reopened blocking findings: `F-3-1` through `F-3-4`. They concern the unregistered no-accounting-inference safety promise, a bundled three-promise limitation sentence, payment legal jargon, and README browser/network implementation jargon. See `.factory/review-4.md` for exact locations and required rewrites/tests.
+
+## How to verify
+
+- Live demo: `https://small-business-export-map.sociobot.in/demo`
+- Full product test suite: `npm test`
+- Claim registry: run every `test` command in `.factory/claims.json` from a clean clone.
+
+---
+
+# Previous polish 2 handoff (historical evidence)
 
 ## Delivered
 
