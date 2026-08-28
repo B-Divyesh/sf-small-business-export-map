@@ -34,12 +34,12 @@ Final clean-clone evidence after the runtime repair: `/tmp/export-map-final-sYBC
 
 ## Deployment
 
-Deployed with `/opt/fleet/lib/deploy-static.sh small-business-export-map dist` after the production build. Application repair commits: `a395d82`, `d6e2962`, `c41f6ca`, `6fdd9da`, and final runtime repair `ea7ace2ef58903dc41c9a8521d165c9e8c7935e8`.
+Deployed with `/opt/fleet/lib/deploy-static.sh small-business-export-map dist` after the production build. Application repair commits: `a395d82`, `d6e2962`, `c41f6ca`, `6fdd9da`, `ea7ace2`, and final focus/runtime repair `e35af96`.
 
 Cold live retest on `https://small-business-export-map.sociobot.in`:
 
-- `/demo` at 390×844 loaded the sample banner, Reset demo, Start for real, and completed Check output with no browser console or page errors.
-- `/missing-review-route` rendered `That page is not in this export.` with title `Page not found — Export Map`.
+- `/demo` at 390×844 loaded the sample banner, Reset demo, Start for real, and completed Check output with no browser console or page errors. Focus moved to the h1.
+- `/missing-review-route` rendered `That page is not in this export.` with title `Page not found — Export Map`; focus moved to the h1.
 - `/privacy/` title was `Privacy — Export Map`.
 - Home response includes CSP and Permissions-Policy. Hashed application JS is `public, max-age=31536000, immutable`; the manifest is `application/manifest+json`.
 - Production checkout returned HTTP 303 to Dodo; invalid license verification returned `{"valid":false,"reason":"invalid"}`. Return-token cleanup and Cache Storage token exclusion passed in the browser suite.

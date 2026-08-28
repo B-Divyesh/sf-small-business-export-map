@@ -25,9 +25,9 @@ Candidate repaired: `c5e798eebe6d3df6813ac61015ce7d8b79601a4c`.
 ## Live retest
 
 Deployed via `/opt/fleet/lib/deploy-static.sh small-business-export-map dist`.
-The final application repair commit is `ea7ace2ef58903dc41c9a8521d165c9e8c7935e8`.
+The final application repair commit is `e35af96` (route focus and announcement); previous runtime repair was `ea7ace2ef58903dc41c9a8521d165c9e8c7935e8`.
 
 - Cold `https://small-business-export-map.sociobot.in/demo` at 390×844: Demo banner, Reset demo, Start for real, and completed Check output visible.
 - Cold unknown route: h1 `That page is not in this export.` and title `Page not found — Export Map`.
-- Browser console and page-error listeners: no errors across demo and 404 routes.
+- Browser console and page-error listeners: no errors across demo and 404 routes. Both routes moved focus to their h1 and announced the route title.
 - Screenshot: `.factory/evidence/live-demo-390.png`.
