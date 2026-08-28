@@ -1,5 +1,5 @@
-const VERSION = 'export-map-v1';
-const SHELL = ['/', '/offline.html', '/privacy/', '/terms/', '/manifest.webmanifest', '/assets/export-route-768.webp', '/icons/icon-192.png', '/icons/icon-512.png'];
+const VERSION = 'export-map-v2';
+const SHELL = ['/', '/demo', '/offline.html', '/privacy/', '/terms/', '/404.html', '/manifest.webmanifest', '/assets/export-route-768.webp', '/icons/icon-192.png', '/icons/icon-512.png'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(VERSION).then((cache) => cache.addAll(SHELL)));
@@ -12,8 +12,12 @@ self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
+  // A checkout return token is intentionally handled by the page, never put in
+  // Cache Storage. This avoids retaining a private token after URL cleanup.
+  if (url.searchParams.has('license')) return;
   if (event.request.mode === 'navigate') {
-    event.respondWith(fetch(event.request).then((response) => { const copy = response.clone(); caches.open(VERSION).then((cache) => cache.put(event.request, copy)); return response; }).catch(async () => (await caches.match(event.request)) || caches.match('/') || caches.match('/offline.html')));
+    const cacheKey = new Request(url.pathname === '/demo' ? '/demo' : '/', { method: 'GET' });
+    event.respondWith(fetch(event.request).then((response) => { const copy = response.clone(); caches.open(VERSION).then((cache) => cache.put(cacheKey, copy)); return response; }).catch(async () => (await caches.match(cacheKey)) || caches.match('/') || caches.match('/offline.html')));
     return;
   }
   event.respondWith(caches.match(event.request).then((cached) => cached || fetch(event.request).then((response) => { if (response.ok) { const copy = response.clone(); caches.open(VERSION).then((cache) => cache.put(event.request, copy)); } return response; })));

@@ -26,7 +26,13 @@ describe('CSV preflight', () => {
     expect(parsed.rows).toEqual([['Acme', 'hello, world'], ['Beta', 'two\nlines']]);
   });
 
-  it('converts only explicitly typed fields and records reversals', () => {
+  it('accepts a valid quoted field beyond the delimiter sample boundary', () => {
+    const parsed = parseCsv(`ID,Notes\n1,"${'x'.repeat(70_000)}"`);
+    expect(parsed.headers).toEqual(['ID', 'Notes']);
+    expect(parsed.rows[0][1]).toHaveLength(70_000);
+  });
+
+  it('@claim:explicit-formatting converts only explicitly typed fields and records reversals', () => {
     const parsed = parseCsv('Date;Amount;Memo\n28.08.2026;12,50;=SUM(A1)');
     const result = transformCsv(parsed, profile());
     expect(result.issues.some((issue) => issue.level === 'error')).toBe(false);

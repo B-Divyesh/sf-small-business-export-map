@@ -3,7 +3,21 @@ import type { DateFormat, Delimiter, Mapping, ParsedCsv, RecipientProfile, Trans
 const CANDIDATES: Delimiter[] = [',', ';', '\t', '|'];
 
 export function detectDelimiter(text: string): Delimiter {
-  const sample = text.slice(0, 64_000);
+  // Never hand the detector a fragment which ends inside a quoted field. A
+  // long, valid Notes column used to make the 64 KB sample look malformed.
+  const limit = Math.min(text.length, 64_000);
+  let end = limit;
+  let quoted = false;
+  for (let i = 0; i < limit; i += 1) {
+    if (text[i] === '"') {
+      if (quoted && text[i + 1] === '"') { i += 1; continue; }
+      quoted = !quoted;
+    }
+    if (!quoted && text[i] === '\n') end = i + 1;
+  }
+  // A first record can itself be larger than the usual sample. In that case
+  // parsing the whole file is safer than rejecting a file below the limit.
+  const sample = end > 0 ? text.slice(0, end) : text;
   let best: { delimiter: Delimiter; score: number } = { delimiter: ',', score: -Infinity };
   for (const delimiter of CANDIDATES) {
     const rows = parseRows(sample, delimiter).slice(0, 20).filter((row) => row.some(Boolean));

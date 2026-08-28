@@ -1,83 +1,40 @@
 # Export Map
 
-Export Map is a private, offline-capable CSV preflight tool for owners of tiny
-businesses. It reshapes exports from invoicing, inventory, expense, and other
-admin tools to match the exact fields and locale conventions an accountant has
-requested—and produces a manifest of every change.
+Prepare CSVs for your accountant. It is for small-business owners who need requested columns, numbers, and dates before sending a file.
 
-Live site: <https://small-business-export-map.sociobot.in>
+Try the finished sample: <https://small-business-export-map.sociobot.in/demo>.
 
 ## What it does
 
-- Reads CSV files entirely in the browser; the source file is never uploaded or
-  overwritten.
-- Detects comma, semicolon, tab, and pipe delimiters and handles quoted fields.
-- Saves recipient profiles locally in IndexedDB.
-- Maps, renames, orders, and requires recipient columns without inferring tax or
-  accounting meaning.
-- Converts decimal marks and four explicit date formats only on columns the user
-  marks as numbers or dates.
-- Shows validation errors, an output preview, affected counts, and a reverse
-  instruction for each transformation.
-- Downloads the transformed UTF-8 CSV and a JSON handoff manifest containing the
-  original file fingerprint.
-- Exports/imports recipient profiles as JSON and works after the network drops.
+- Reads a CSV in the browser and shows a checked output preview.
+- Lets you name recipient columns and set separators, decimal marks, and date formats.
+- Downloads a reshaped CSV and a JSON record of each change.
+- Saves up to two recipient profiles in this browser. A one-time US$19 purchase saves unlimited profiles.
 
-The free tier includes the full preflight/export workflow and two saved profiles.
-The one-time US$19 Pro unlock adds unlimited saved profiles through the Sociobot
-billing and license API. No payment provider is embedded in this app.
+The sample is separate from your saved profiles. It uses the `demo:export-map` IndexedDB database. Your real profiles use `export-map`. See [the demo guide](.factory/demo.md).
 
-## Run locally
+## Run and test
 
-Requires Node.js 20 or later.
+Node.js 20 or later is required.
 
 ```sh
 npm ci
-npm run dev
-```
-
-Open the URL Vite prints. To test the production output:
-
-```sh
 npm test
 ```
 
-That command runs unit tests, builds the production app, and runs the Playwright
-workflow, accessibility, legal-page, and offline tests. Playwright 1.58.2 is
-pinned; if Chromium is not already present, run `npx playwright install chromium`.
-
-## Build and deploy
+Run every registered claim test from a clean state:
 
 ```sh
-npm run build
+for id in demo-isolation offline-demo csv-manifest privacy-demo profile-persistence source-preservation profile-limit pro-checkout file-limit; do
+  npm run test:e2e -- --grep "@claim:$id"
+done
 ```
 
-The exact static deploy artifact is `dist/`, with `dist/index.html` at its root.
-Serve all files as static assets and preserve the `/privacy/` and `/terms/`
-directories. The service worker is scoped to `/` and requires HTTPS outside
-localhost.
+Build with `npm run build`. The static deployment artifact is `dist/`, with `index.html` at its root. Static hosting must preserve `/privacy/`, `/terms/`, `/demo`, the service worker, and `staticwebapp.config.json`.
 
-The factory registers the paid product separately. The frontend deliberately
-uses the slug-based URL
-`https://api.sociobot.in/api/v1/products/small-business-export-map/...`; it does
-not contain a provider product ID or secret.
+## Privacy and purchase
 
-## Privacy and data ownership
-
-There are no analytics, ads, runtime CDNs, or hosted fonts. Active CSV contents
-live only in the current browser tab. Recipient profiles live in IndexedDB;
-license tokens and their daily verification cache live in localStorage. The
-in-app profile export/import controls let users move or back up their data.
-
-See [the privacy policy](https://small-business-export-map.sociobot.in/privacy/)
-and [terms](https://small-business-export-map.sociobot.in/terms/).
-
-## Design and provenance
-
-The product-specific risograph system, tokens, interaction grammar, image prompt,
-review, and provenance are recorded in [`.factory/design.md`](.factory/design.md).
-The generated source artwork and prompt sidecars are retained in `assets/src/`;
-optimized WebP variants ship in `public/assets/`.
+The sample and normal CSV workflow make only same-origin requests. A pasted or returned license token is stored in browser localStorage. The app checks a license with `api.sociobot.in` at most once per day while online. Sociobot/Dodo hosts checkout and is the merchant of record. See [Privacy](https://small-business-export-map.sociobot.in/privacy/) and [Terms](https://small-business-export-map.sociobot.in/terms/).
 
 ## License
 

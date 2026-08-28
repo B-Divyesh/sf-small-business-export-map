@@ -1,11 +1,16 @@
 import type { RecipientProfile } from './types';
 
-const DB_NAME = 'export-map';
+let dbName = 'export-map';
 const STORE = 'profiles';
+
+/** Demo data deliberately lives in a different IndexedDB database. */
+export function setDemoStorage(enabled: boolean): void {
+  dbName = enabled ? 'demo:export-map' : 'export-map';
+}
 
 function openDb(): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
-    const request = indexedDB.open(DB_NAME, 1);
+    const request = indexedDB.open(dbName, 1);
     request.onupgradeneeded = () => request.result.createObjectStore(STORE, { keyPath: 'id' });
     request.onsuccess = () => resolve(request.result);
     request.onerror = () => reject(request.error);
@@ -24,18 +29,20 @@ export async function listProfiles(): Promise<RecipientProfile[]> {
 export async function putProfile(profile: RecipientProfile): Promise<void> {
   const db = await openDb();
   return new Promise((resolve, reject) => {
-    const request = db.transaction(STORE, 'readwrite').objectStore(STORE).put(profile);
-    request.onsuccess = () => resolve();
-    request.onerror = () => reject(request.error);
+    const tx = db.transaction(STORE, 'readwrite');
+    tx.objectStore(STORE).put(profile);
+    tx.oncomplete = () => resolve();
+    tx.onerror = () => reject(tx.error);
   });
 }
 
 export async function deleteProfile(id: string): Promise<void> {
   const db = await openDb();
   return new Promise((resolve, reject) => {
-    const request = db.transaction(STORE, 'readwrite').objectStore(STORE).delete(id);
-    request.onsuccess = () => resolve();
-    request.onerror = () => reject(request.error);
+    const tx = db.transaction(STORE, 'readwrite');
+    tx.objectStore(STORE).delete(id);
+    tx.oncomplete = () => resolve();
+    tx.onerror = () => reject(tx.error);
   });
 }
 

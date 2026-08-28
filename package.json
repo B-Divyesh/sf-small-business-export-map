@@ -9,6 +9,7 @@
     "preview": "vite preview --host 127.0.0.1",
     "test:unit": "vitest run tests/unit",
     "test:e2e": "playwright test",
+    "verify:url": "bash scripts/verify-url.sh",
     "test": "npm run test:unit && npm run build && npm run test:e2e"
   },
   "devDependencies": {

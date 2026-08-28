@@ -14,9 +14,10 @@ a { color: #10357f; text-underline-offset: .2em; }
 a:focus-visible { outline: 3px solid var(--coral); outline-offset: 4px; border-radius: 2px; }
 .skip-link { position: fixed; left: 1rem; top: -5rem; background: var(--ink); color: white; padding: .75rem; z-index: 5; }
 .skip-link:focus { top: 1rem; }
-header, footer { padding: 1.25rem max(1.25rem, calc((100% - 760px) / 2)); border-bottom: 2px solid var(--ink); }
+header, footer { padding: 1.25rem max(1.25rem, calc((100% - 760px) / 2)); border-bottom: 2px solid var(--ink); display:flex; gap:1rem; align-items:center; justify-content:space-between; flex-wrap:wrap; }
 footer { border: 0; border-top: 1px solid #b8ad98; color: var(--muted); }
 .brand { font: 700 1.25rem Georgia, serif; color: var(--ink); text-decoration: none; }
+nav { display:flex; gap:.75rem; } nav a, footer a { min-height:44px; display:inline-flex; align-items:center; }
 main { max-width: 760px; margin: 0 auto; padding: 4rem 1.25rem 6rem; }
 .eyebrow { text-transform: uppercase; letter-spacing: .12em; font-weight: 800; color: var(--coral); font-size: .82rem; }
 h1, h2 { font-family: Georgia, serif; line-height: 1.08; }

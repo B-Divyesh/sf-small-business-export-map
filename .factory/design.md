@@ -106,6 +106,9 @@ borders, and icons.
   output reviewed for text artefacts, symbols, seams, and misleading claims.
 - Delivery: source PNG and prompt sidecar in `assets/src/`; responsive WebP in
   `public/assets/`, ≤300 KB. Generated imagery is disclosed in the footer.
+- Social card: `public/assets/export-map-og.webp` is a 1200×630 crop derived
+  from the reviewed original hero art on 2026-08-28. It adds no new generated
+  subject matter and is used only for Open Graph and Twitter previews.
 
 Icons and status marks are hand-authored from CSS/Unicode primitives so they
 remain sharp, accessible, and consistent with the ink-line system.
