@@ -158,6 +158,8 @@ test('@claim:no-accounting-inference leaves ambiguous tax data unchanged until t
     mimeType:'text/csv',
     buffer:Buffer.from('VAT,Tax code,Amount\n20,A20,20'),
   });
+  await expect(page.locator('#file-summary')).toContainText('1 records');
+  await expect(page.locator('#file-summary')).toContainText('3 columns');
   await expect(page.getByText('You choose the accounting meaning.').first()).toBeVisible();
   await page.getByRole('button',{name:'Use source headers'}).click();
   await expect(page.locator('#mapping-body tr')).toHaveCount(3);
