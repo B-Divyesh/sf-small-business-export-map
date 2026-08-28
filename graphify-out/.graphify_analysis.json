@@ -3,6 +3,7 @@
     "0": [
       "src_csv",
       "src_csv_candidates",
+      "src_csv_delimiterlabel",
       "src_csv_detectdelimiter",
       "src_csv_formatdate",
       "src_csv_normalisenumber",
@@ -25,34 +26,15 @@
       "tests_unit_csv_test_profile"
     ],
     "1": [
-      "src_csv_delimiterlabel",
-      "src_main",
-      "src_main_blankprofile",
-      "src_main_dateformats",
-      "src_main_download",
-      "src_main_esc",
-      "src_main_handlefile",
-      "src_main_initlicense",
-      "src_main_manifest",
-      "src_main_message",
-      "src_main_option",
-      "src_main_profile",
-      "src_main_profiles",
-      "src_main_registerserviceworker",
-      "src_main_rendermappings",
-      "src_main_renderreview",
-      "src_main_safebase",
-      "src_main_setlicenseui",
-      "src_main_syncform",
-      "src_main_updatemapping",
-      "src_main_updatenetwork",
-      "src_main_verifylicense"
-    ],
-    "2": [
       "ref_dom",
       "ref_dom_iterable",
       "ref_es2022",
+      "ref_playwright_config_ts",
+      "ref_src",
+      "ref_tests",
+      "ref_vite_config_ts",
       "ref_webworker",
+      "tsconfig",
       "tsconfig_compileroptions",
       "tsconfig_compileroptions_allowimportingtsextensions",
       "tsconfig_compileroptions_isolatedmodules",
@@ -64,9 +46,10 @@
       "tsconfig_compileroptions_skiplibcheck",
       "tsconfig_compileroptions_strict",
       "tsconfig_compileroptions_target",
-      "tsconfig_compileroptions_usedefineforclassfields"
+      "tsconfig_compileroptions_usedefineforclassfields",
+      "tsconfig_include"
     ],
-    "3": [
+    "2": [
       "axe_core_playwright",
       "package_devdependencies",
       "package_devdependencies_axe_core_playwright",
@@ -83,7 +66,7 @@
       "vite",
       "vitest"
     ],
-    "4": [
+    "3": [
       "package",
       "package_name",
       "package_private",
@@ -94,8 +77,20 @@
       "package_scripts_test",
       "package_scripts_test_e2e",
       "package_scripts_test_unit",
+      "package_scripts_verify_url",
       "package_type",
       "package_version"
+    ],
+    "4": [
+      "src_main",
+      "src_main_dates",
+      "src_main_notfound",
+      "src_main_product",
+      "src_main_profile",
+      "src_main_profiles",
+      "src_main_registerserviceworker",
+      "src_main_shell",
+      "src_main_updatenetwork"
     ],
     "5": [
       "src_db",
@@ -104,48 +99,87 @@
       "src_db_opendb",
       "src_db_putprofile",
       "src_db_replaceprofiles",
-      "src_main_readform",
-      "src_main_saveprofile"
+      "src_db_setdemostorage"
     ],
     "6": [
-      "ref_playwright_config_ts",
-      "ref_src",
-      "ref_tests",
-      "ref_vite_config_ts",
-      "tsconfig",
-      "tsconfig_include"
+      "src_main_esc",
+      "src_main_handlefile",
+      "src_main_loadsample",
+      "src_main_opt",
+      "src_main_rendermappings",
+      "src_main_sampleprofile",
+      "src_main_syncform"
     ],
     "7": [
+      "src_main_bind",
+      "src_main_blankprofile",
+      "src_main_download",
+      "src_main_manifest",
+      "src_main_updatemapping",
+      "src_main_validprofile"
+    ],
+    "8": [
+      "src_main_message",
+      "src_main_q",
+      "src_main_readform",
+      "src_main_renderreview",
+      "src_main_saveprofile"
+    ],
+    "9": [
+      "src_main_initlicense",
+      "src_main_setlicenseui",
+      "src_main_verifylicense"
+    ],
+    "10": [
       "public_sw",
       "public_sw_shell"
     ],
-    "8": [
+    "11": [
+      "scripts_verify_url",
+      "scripts_verify_url_sh__entry"
+    ],
+    "12": [
+      "tests_e2e_app_spec",
+      "tests_e2e_app_spec_opendemo"
+    ],
+    "13": [
       "playwright_config"
     ],
-    "9": [
-      "tests_e2e_app_spec"
-    ],
-    "10": [
+    "14": [
       "vite_config"
     ]
   },
   "cohesion": {
-    "0": 0.17316017316017315,
-    "1": 0.16883116883116883,
-    "2": 0.125,
-    "3": 0.13333333333333333,
-    "4": 0.16666666666666666,
-    "5": 0.42857142857142855,
-    "6": 0.3333333333333333,
-    "7": 1.0,
-    "8": 1.0,
+    "0": 0.16600790513833993,
+    "1": 0.09090909090909091,
+    "2": 0.13333333333333333,
+    "3": 0.15384615384615385,
+    "4": 0.2777777777777778,
+    "5": 0.47619047619047616,
+    "6": 0.47619047619047616,
+    "7": 0.3333333333333333,
+    "8": 0.8,
     "9": 1.0,
-    "10": 1.0
+    "10": 1.0,
+    "11": 1.0,
+    "12": 1.0,
+    "13": 1.0,
+    "14": 1.0
   },
   "gods": [
     {
+      "id": "src_main_bind",
+      "label": "bind()",
+      "degree": 20
+    },
+    {
       "id": "tsconfig_compileroptions",
       "label": "compilerOptions",
+      "degree": 12
+    },
+    {
+      "id": "src_main_q",
+      "label": "q()",
       "degree": 12
     },
     {
@@ -154,50 +188,51 @@
       "degree": 9
     },
     {
-      "id": "src_main_esc",
-      "label": "esc()",
-      "degree": 7
+      "id": "src_main_handlefile",
+      "label": "handleFile()",
+      "degree": 9
     },
     {
       "id": "package_scripts",
       "label": "scripts",
-      "degree": 7
+      "degree": 8
     },
     {
-      "id": "src_csv_parsecsv",
-      "label": "parseCsv()",
-      "degree": 6
+      "id": "src_main_syncform",
+      "label": "syncForm()",
+      "degree": 8
     },
     {
-      "id": "src_main_handlefile",
-      "label": "handleFile()",
-      "degree": 6
+      "id": "src_main_renderreview",
+      "label": "renderReview()",
+      "degree": 8
     },
     {
       "id": "src_main_saveprofile",
       "label": "saveProfile()",
-      "degree": 6
+      "degree": 8
     },
     {
-      "id": "src_types_recipientprofile",
-      "label": "RecipientProfile",
-      "degree": 5
-    },
-    {
-      "id": "src_csv_delimiterlabel",
-      "label": "delimiterLabel()",
-      "degree": 5
-    },
-    {
-      "id": "src_main_message",
-      "label": "message()",
-      "degree": 5
+      "id": "src_main_esc",
+      "label": "esc()",
+      "degree": 7
     }
   ],
   "surprises": [
     {
       "source": "handleFile()",
       "target": "parseCsv()",
+      "source_files": [
+        "src/main.ts",
+        "src/csv.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "handleFile()",
+      "target": "delimiterLabel()",
       "source_files": [
         "src/main.ts",
         "src/csv.ts"
@@ -218,26 +253,15 @@
       "why": "bridges separate communities"
     },
     {
-      "source": "manifest()",
-      "target": "delimiterLabel()",
+      "source": "bind()",
+      "target": "listProfiles()",
       "source_files": [
         "src/main.ts",
-        "src/csv.ts"
+        "src/db.ts"
       ],
       "confidence": "EXTRACTED",
       "relation": "calls",
-      "why": "peripheral node `manifest()` unexpectedly reaches hub `delimiterLabel()`"
-    },
-    {
-      "source": "handleFile()",
-      "target": "delimiterLabel()",
-      "source_files": [
-        "src/main.ts",
-        "src/csv.ts"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "calls",
-      "why": "cross-file semantic connection"
+      "why": "bridges separate communities"
     },
     {
       "source": "saveProfile()",
@@ -248,7 +272,7 @@
       ],
       "confidence": "EXTRACTED",
       "relation": "calls",
-      "why": "cross-file semantic connection"
+      "why": "bridges separate communities"
     }
   ],
   "tokens": {
