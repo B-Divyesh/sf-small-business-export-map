@@ -54,3 +54,31 @@ Evidence and finding mapping: [.factory/polish-2.md](polish-2.md).
 ## Known gaps
 
 None. No payment was made during verification; checkout terms were read from the live hosted page, and entitlement behavior used recorded valid/revoked API fixtures.
+
+## Review 3 handoff — 2026-08-28
+
+### Work completed
+
+- Performed a third independent, adversarial live review without changing product code.
+- Added `.factory/review-3.md`: cold phone/desktop read, complete landing/README copy audit, demo/privacy/offline evidence, claim-command results, structure/accessibility checks, and verification of every earlier finding.
+- Ran the current 17 registered claims one by one from fresh clone `/tmp/export-map-review3.Rsvw0R`; all passed.
+
+### Verification
+
+- `npm ci` in the clean clone: pass, zero vulnerabilities.
+- All 17 literal `.factory/claims.json` commands: pass.
+- `npm test`: unit suite reported 11/11 passing tests; the 18-test browser suite ran without a recorded failure during the review.
+- `npm run build`, `npx tsc --noEmit`, and `npm run verify:url -- https://small-business-export-map.sociobot.in/`: pass.
+- Live `/`, `/demo`, `/privacy/`, `/terms/`: 200. Live unknown route: 404.
+- Live 390 px and desktop first-screen, sticky demo sandbox, reset, same-origin request log, offline reload, route metadata, focus, console, and original visual identity: verified.
+
+### Known gaps / next steps
+
+Review 3 is **FAIL** with four documentation/copy-contract findings, not a broken workflow:
+
+1. Register and test the visible no-accounting-inference guarantee.
+2. Split the three-part limitation sentence on the landing page.
+3. Replace “merchant of record” with plain purchase language.
+4. Translate README `IndexedDB`, storage-key, and `same-origin` privacy phrasing for the owner audience.
+
+No payment was made. Checkout verification used the live redirect and hosted checkout wording; entitlement verification used recorded browser-route responses.
