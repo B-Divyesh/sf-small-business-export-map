@@ -1,0 +1,11 @@
+Lighthouse 12.8.2, mobile defaults, local production build, 2026-08-28
+Performance: 99
+Accessibility: 100
+Best practices: 100
+SEO: 100
+Largest Contentful Paint: 1.9 s
+Cumulative Layout Shift: 0
+Total Blocking Time: 0 ms
+Initial app JavaScript: 32.28 kB (10.97 kB gzip)
+Initial app CSS: 12.47 kB (3.57 kB gzip)
+Mobile hero image: 34,134 bytes

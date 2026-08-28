@@ -1,0 +1,23 @@
+Clean clone: /tmp/export-map-polish2.tlWgaD
+Source commit: f55bfe8
+Install: npm ci — 60 packages, 0 vulnerabilities
+
+PASS demo-isolation
+PASS offline-demo
+PASS csv-change-record
+PASS privacy-demo
+PASS privacy-real-workflow
+PASS profile-persistence
+PASS source-preservation
+PASS file-limit
+PASS profile-limit
+PASS explicit-formatting
+PASS formula-protection
+PASS core-format-matrix
+PASS preview-full-download
+PASS profile-backup
+PASS checkout-host
+PASS pro-license
+PASS template-import
+
+Each line above is the result of running the literal `test` command from .factory/claims.json independently.
