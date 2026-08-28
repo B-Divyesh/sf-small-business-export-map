@@ -8,7 +8,7 @@ Candidate repaired: `ca05b868883ec6855e79d08c8939a53319182cec`. Review source: `
 | --- | --- | --- |
 | F-1-1 | The first screen links directly to `/demo`; the completed three-row sample uses `demo:export-map`, has a persistent banner, resets, and exits without copying demo data. | `@claim:demo-isolation`, `@claim:privacy-demo`; [live demo at 390 px](evidence/polish-4-live-demo-390.png); live `/demo` and `/?demo=1` |
 | F-1-2 | The first screen names the CSV/accountant job, audience, sample action, real action, outcome, privacy, offline use, and price. | [live first screen](evidence/polish-4-live-landing-390.png); live final fact bottom `759.3125 < 844`; [copy audit](copy-audit.md) |
-| F-1-3 | The registry now has 18 observable claims and exactly one tagged test per ID. Every literal command is independently runnable. | `claims registry > maps every claim to exactly one tagged test`; 18/18 commands passed in clean clone `/tmp/export-map-polish4.tEIWEK` |
+| F-1-3 | The registry now has 18 observable claims and exactly one tagged test per ID. Every literal command is independently runnable. | `claims registry > maps every claim to exactly one tagged test`; 18/18 commands passed in clean clone `/tmp/export-map-polish4-final.tsy6RW` |
 | F-1-4 | The only purchase link uses the registered Sociobot endpoint and the live endpoint redirects to hosted Dodo checkout. | `@claim:checkout-host`; live checkout returned 303 to `checkout.dodopayments.com` |
 | F-1-5 | The phone review child stays within the grid and the named preview owns horizontal overflow through its final column. | `mobile routes, six-column preview, and 200% text have no serious accessibility defects`; [live demo](evidence/polish-4-live-demo-390.png) |
 | F-1-6 | Profile backups are fully validated before the replacement transaction. Invalid data leaves valid profiles intact. | `rejects an invalid backup atomically and accepts a long quoted field`; `@claim:profile-backup` |
@@ -56,6 +56,6 @@ Review 4 reopened these same four IDs as blocking; the rows below are the round-
 
 - `npm test`: 11 unit/contract tests, 19 Playwright tests, production build, and rendered URL self-test passed.
 - `npx tsc --noEmit` and `npm run build` passed. Initial app JS is 32.32 kB raw / 10.98 kB gzip; CSS is 12.55 kB raw / 3.59 kB gzip.
-- Clean remote clone at `ad78a1f332dcc232d222a4fb05e6f9a1970a71f9`: `npm ci` found zero vulnerabilities and all 18 literal claim commands passed.
+- Clean remote clone at `b43839f88902857ec397c42ae72bc620f122a521`: `npm ci` found zero vulnerabilities and all 18 literal claim commands passed.
 - Lighthouse mobile: performance 99, accessibility 100, best practices 100, SEO 100; LCP 2.0 s, CLS 0, TBT 0 ms.
 - Deployment `80580c13-974a-4599-9153-2ae3607dc381` succeeded. Cold live checks passed demo isolation/reset/downloads, same-origin traffic, offline reload, ambiguous-tax safety, route focus, metadata, security headers, checkout redirect, hard 404, and console/Axe checks.

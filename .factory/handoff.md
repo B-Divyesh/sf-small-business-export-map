@@ -14,12 +14,11 @@ Finding-by-finding changes and evidence are in [.factory/polish-4.md](polish-4.m
 
 ## Verification
 
-- Implementation commit: `ad78a1f332dcc232d222a4fb05e6f9a1970a71f9`; no-inference readiness hardening: `dfe8ec0`.
+- Implementation commit: `ad78a1f332dcc232d222a4fb05e6f9a1970a71f9`; no-inference readiness hardening: `dfe8ec0`; complete product/evidence tree: `b43839f88902857ec397c42ae72bc620f122a521`.
 - `npm test` — PASS: 11 unit/contract tests, 19 Playwright tests, build, and rendered URL self-test.
 - `npx tsc --noEmit` — PASS.
 - `npm run build` — PASS; `dist/index.html` exists.
-- Clean remote clone `/tmp/export-map-polish4.tEIWEK` at `ad78a1f332dcc232d222a4fb05e6f9a1970a71f9`: `npm ci` found 0 vulnerabilities; every literal command in the 18-entry claims registry passed independently.
-- The stricter final `@claim:no-accounting-inference` test also passed after waiting for the visible file-ready state.
+- Clean remote clone `/tmp/export-map-polish4-final.tsy6RW` at `b43839f88902857ec397c42ae72bc620f122a521`: `npm ci` found 0 vulnerabilities; every literal command in the 18-entry claims registry passed independently.
 - Accessibility: Playwright Axe on home, demo, Privacy, Terms, and 404 at 390 px found 0 serious/critical issues. Keyboard preview reach, route focus, and 200% text passed.
 - Privacy/offline: real-file traffic had only GET requests with no request body; demo traffic used only the product origin; fresh demo storage contained only `demo:export-map`; primed `/demo` reloaded offline with the completed sample.
 - Performance: Lighthouse mobile 99 performance, 100 accessibility, 100 best practices, 100 SEO; LCP 2.0 s, CLS 0, TBT 0 ms.
