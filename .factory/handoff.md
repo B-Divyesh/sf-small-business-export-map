@@ -30,6 +30,8 @@ Recorded before commit:
 - Build: application JS 30.10 KB (10.58 KB gzip); application CSS 11.89 KB (3.45 KB gzip); original mobile hero 34 KB; social crop 73 KB.
 - Screenshots: `.factory/evidence/landing-1440.png` and `.factory/evidence/demo-390.png`.
 
+Final clean-clone evidence after the runtime repair: `/tmp/export-map-final-sYBCjW` ran `npm ci`, `npm test` (6 unit, build, 13 Playwright), all nine Playwright claim commands, and the tagged Vitest claim successfully.
+
 ## Deployment
 
 Deployed with `/opt/fleet/lib/deploy-static.sh small-business-export-map dist` after the production build. Application repair commits: `a395d82`, `d6e2962`, `c41f6ca`, `6fdd9da`, and final runtime repair `ea7ace2ef58903dc41c9a8521d165c9e8c7935e8`.
