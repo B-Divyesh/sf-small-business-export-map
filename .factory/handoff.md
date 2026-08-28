@@ -1,4 +1,41 @@
-# Export Map v1 handoff
+# Export Map v1 verification handoff — FAIL
+
+## Independent verification result (2026-08-28)
+
+**FAIL** for candidate `c5e798eebe6d3df6813ac61015ce7d8b79601a4c`
+at <https://small-business-export-map.sociobot.in/>.
+
+The live deployment is present and byte-matches the candidate's rebuilt static
+artifacts. Clean install, TypeScript, 5 unit tests, production build, 4 repository
+E2E tests, npm audit, desktop workflow, downloads/manifests, offline reload,
+service-worker update flow, and performance budgets pass. Live Lighthouse mobile
+scored 97 Performance / 100 Accessibility / 100 Best Practices / 100 SEO with
+LCP 1.4 s, TBT 180 ms, and CLS 0.
+
+Release is blocked by these independently reproduced defects:
+
+1. **High:** the advertised US$19 Buy Pro endpoint returns HTTP 404, so purchase
+   cannot complete.
+2. **High:** a six-column output preview expands to 622 px at a 390 px viewport;
+   later columns are clipped and neither the preview nor page can scroll to them.
+3. **High:** a schema-1 profile backup with a keyed but structurally invalid
+   profile replaces existing IndexedDB data before validation and leaves mapping
+   actions throwing after reload.
+4. **Medium:** a valid 70,014-byte CSV whose quoted cell crosses the parser's
+   64 KB delimiter-sample boundary is rejected as an unclosed quote.
+5. **Medium:** axe reports a serious `scrollable-region-focusable` failure on
+   the mobile workflow rail; some secondary mobile links are also below 44 px.
+6. **Medium:** a license query token stripped from the address bar remains in a
+   persistent service-worker Cache Storage request URL.
+7. **Low:** hashed assets receive only 30-second revalidation, the manifest is
+   served as octet-stream, and CSP/Permissions-Policy are absent.
+
+Full commands, evidence, passing coverage, exact hashes, and retest criteria are
+in [`.factory/verification.md`](verification.md). No product code was modified.
+
+---
+
+## Builder handoff (pre-verification)
 
 ## What shipped
 
