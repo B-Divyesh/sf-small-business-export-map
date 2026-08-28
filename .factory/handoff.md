@@ -32,8 +32,16 @@ Recorded before commit:
 
 ## Deployment
 
-The static work-order deployment is initiated by pushing `main`. After push, cold-check `/`, `/demo`, `/privacy/`, `/terms/`, `/missing-review-route`, checkout, license cleanup, and response headers. Add the deployed commit and live check result below before release handoff.
+Deployed with `/opt/fleet/lib/deploy-static.sh small-business-export-map dist` after the production build. Application repair commits: `a395d82`, `d6e2962`, `c41f6ca`, `6fdd9da`, and final runtime repair `ea7ace2ef58903dc41c9a8521d165c9e8c7935e8`.
+
+Cold live retest on `https://small-business-export-map.sociobot.in`:
+
+- `/demo` at 390×844 loaded the sample banner, Reset demo, Start for real, and completed Check output with no browser console or page errors.
+- `/missing-review-route` rendered `That page is not in this export.` with title `Page not found — Export Map`.
+- `/privacy/` title was `Privacy — Export Map`.
+- Home response includes CSP and Permissions-Policy. Hashed application JS is `public, max-age=31536000, immutable`; the manifest is `application/manifest+json`.
+- Production checkout returned HTTP 303 to Dodo; invalid license verification returned `{"valid":false,"reason":"invalid"}`. Return-token cleanup and Cache Storage token exclusion passed in the browser suite.
 
 ## Known gaps
 
-None known. The paid checkout smoke test does not submit a payment, so it does not create a charge or receive a live paid token; return-token capture and invalid-license reconciliation are covered in browser tests.
+None known. The checkout smoke test intentionally does not submit a payment or create a charge; return-token capture and invalid-license reconciliation are covered in browser tests.
