@@ -154,13 +154,13 @@
       "degree": 9
     },
     {
-      "id": "package_scripts",
-      "label": "scripts",
+      "id": "src_main_esc",
+      "label": "esc()",
       "degree": 7
     },
     {
-      "id": "src_main_esc",
-      "label": "esc()",
+      "id": "package_scripts",
+      "label": "scripts",
       "degree": 7
     },
     {
@@ -179,18 +179,18 @@
       "degree": 6
     },
     {
+      "id": "src_types_recipientprofile",
+      "label": "RecipientProfile",
+      "degree": 5
+    },
+    {
       "id": "src_csv_delimiterlabel",
       "label": "delimiterLabel()",
       "degree": 5
     },
     {
-      "id": "src_db_opendb",
-      "label": "openDb()",
-      "degree": 5
-    },
-    {
-      "id": "src_main_syncform",
-      "label": "syncForm()",
+      "id": "src_main_message",
+      "label": "message()",
       "degree": 5
     }
   ],
@@ -198,6 +198,17 @@
     {
       "source": "handleFile()",
       "target": "parseCsv()",
+      "source_files": [
+        "src/main.ts",
+        "src/csv.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "renderReview()",
+      "target": "transformCsv()",
       "source_files": [
         "src/main.ts",
         "src/csv.ts"
@@ -216,17 +227,6 @@
       "confidence": "EXTRACTED",
       "relation": "calls",
       "why": "peripheral node `manifest()` unexpectedly reaches hub `delimiterLabel()`"
-    },
-    {
-      "source": "renderReview()",
-      "target": "transformCsv()",
-      "source_files": [
-        "src/main.ts",
-        "src/csv.ts"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "calls",
-      "why": "bridges separate communities"
     },
     {
       "source": "handleFile()",
