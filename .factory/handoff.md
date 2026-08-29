@@ -1,4 +1,22 @@
-# Export Map — polish 4 handoff
+# Export Map — review 5 handoff
+
+## Review work completed
+
+- Performed the required cold live review at 390×844 and 1440×900 without changing product code.
+- Confirmed the finished one-click demo, reset/exit isolation, same-origin demo traffic, offline reload, routes, links, focus, metadata, Axe baseline, historical finding closures, and visual direction.
+- Ran all 18 exact claim commands from a clean clone at `/tmp/export-map-review5-clean.cy2pz6/worktree`; all passed.
+- Ran `npm test`, `npx tsc --noEmit`, and `npm run build`; all passed.
+- Wrote the full review in `.factory/review-5.md`.
+
+## Remaining issue
+
+- Review verdict is **FAIL** with one minor finding: every route omits `twitter:image`, despite supplying the product's Open Graph image. Add the existing `export-map-og.webp` as `twitter:image` on home, demo, Privacy, Terms, and 404, then assert it in the metadata test.
+
+No product code was modified by this reviewer. The pre-existing dirty `graphify-out/` files were left untouched.
+
+---
+
+# Previous polish 4 handoff
 
 ## Delivered
 
