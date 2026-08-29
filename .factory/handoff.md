@@ -1,72 +1,45 @@
-# Export Map — review 5 handoff
-
-## Review work completed
-
-- Performed the required cold live review at 390×844 and 1440×900 without changing product code.
-- Confirmed the finished one-click demo, reset/exit isolation, same-origin demo traffic, offline reload, routes, links, focus, metadata, Axe baseline, historical finding closures, and visual direction.
-- Ran all 18 exact claim commands from a clean clone at `/tmp/export-map-review5-clean.cy2pz6/worktree`; all passed.
-- Ran `npm test`, `npx tsc --noEmit`, and `npm run build`; all passed.
-- Wrote the full review in `.factory/review-5.md`.
-
-## Remaining issue
-
-- Review verdict is **FAIL** with one minor finding: every route omits `twitter:image`, despite supplying the product's Open Graph image. Add the existing `export-map-og.webp` as `twitter:image` on home, demo, Privacy, Terms, and 404, then assert it in the metadata test.
-
-No product code was modified by this reviewer. The pre-existing dirty `graphify-out/` files were left untouched.
-
----
-
-# Previous polish 4 handoff
+# Export Map — polish 5 handoff
 
 ## Delivered
 
-- Closed every finding from reviews 1–4, including the four review-3 findings reopened as blockers in review 4.
-- Registered and tested the no-accounting-inference guarantee with ambiguous VAT and tax-code data.
-- Split privacy, source-preservation, and accounting-choice assurances into separate plain lines.
-- Replaced payment legal jargon with a direct explanation of payment, receipts, and refunds.
-- Rewrote reader-facing README and Privacy storage/network language without IndexedDB, localStorage, or same-origin jargon.
-- Preserved the risograph print-room identity, one-click isolated sample, offline PWA class, real routes, mobile layout, and local-first workflow.
-- Updated the PWA cache to `export-map-v4`, the visible build marker to `polish-4`, and the catalog description.
+- Repaired review 5 finding F-5-1: every public route now explicitly declares the original 1200×630 product card as `twitter:image`.
+- Extended the route contract test to require that exact image on home, demo, Privacy, Terms, and the hard 404.
+- Advanced the PWA shell cache and install start URL to v5 so installed clients receive the metadata repair.
+- Preserved the reviewed risograph print-room identity, clear first screen, one-click isolated sample, local-only workflow, physical legal routes, hard 404, mobile layout, and offline PWA artifact class.
+- Updated the catalog line to: “Prepare CSV files with the columns, separators, numbers, and dates your accountant requested.”
 
-Finding-by-finding changes and evidence are in [.factory/polish-4.md](polish-4.md).
+## Commits and deployment
 
-## Verification
+- Base reviewer commit: `e99ad21b9f732dc036ee4e93179abf18e962a3ea`.
+- Product repair: `0b3801e7bc0e412e694cf40876570c87da823139` (`fix: declare Twitter card image on every route`), pushed to `origin/main`.
+- Static deployment: `d126fdbb-174c-4b07-83fb-c1e6e858b6aa`.
+- Live URL: <https://small-business-export-map.sociobot.in>.
 
-- Implementation commit: `ad78a1f332dcc232d222a4fb05e6f9a1970a71f9`; no-inference readiness hardening: `dfe8ec0`; complete product/evidence tree: `b43839f88902857ec397c42ae72bc620f122a521`.
-- `npm test` — PASS: 11 unit/contract tests, 19 Playwright tests, build, and rendered URL self-test.
-- `npx tsc --noEmit` — PASS.
-- `npm run build` — PASS; `dist/index.html` exists.
-- Clean remote clone `/tmp/export-map-polish4-final.tsy6RW` at `b43839f88902857ec397c42ae72bc620f122a521`: `npm ci` found 0 vulnerabilities; every literal command in the 18-entry claims registry passed independently.
-- Accessibility: Playwright Axe on home, demo, Privacy, Terms, and 404 at 390 px found 0 serious/critical issues. Keyboard preview reach, route focus, and 200% text passed.
-- Privacy/offline: real-file traffic had only GET requests with no request body; demo traffic used only the product origin; fresh demo storage contained only `demo:export-map`; primed `/demo` reloaded offline with the completed sample.
-- Performance: Lighthouse mobile 99 performance, 100 accessibility, 100 best practices, 100 SEO; LCP 2.0 s, CLS 0, TBT 0 ms.
-- Budgets: initial app JS 32.32 kB raw / 10.98 kB gzip; CSS 12.55 kB raw / 3.59 kB gzip; mobile hero 34.13 kB.
+## Exact verification evidence
 
-## Deployment and live evidence
-
-- Static deployment id: `80580c13-974a-4599-9153-2ae3607dc381`.
-- Live origin: <https://small-business-export-map.sociobot.in>.
-- `/`, `/demo`, `/privacy/`, `/terms/` return 200; `/missing-polish-4-route` returns 404.
-- `npm run verify:url -- https://small-business-export-map.sociobot.in/` passed.
-- Cold 390 px first-screen facts ended at 759.3125 px inside an 844 px viewport.
-- Cold `/demo` showed the completed sample, sticky banner, Reset demo, Start for real, both downloads, and only `demo:export-map` in a fresh context.
-- The live no-inference check preserved `20`, `A20`, and `20` as text until explicit user mapping.
-- Live home and demo Axe checks found 0 serious/critical issues; offline reload passed; no unexpected console errors occurred.
-- Live headers include CSP, Permissions-Policy, nosniff, referrer policy, and HSTS. Checkout returns 303 to `checkout.dodopayments.com`.
-- Screenshots: [first screen](evidence/polish-4-live-landing-390.png), [demo](evidence/polish-4-live-demo-390.png), [limitations](evidence/polish-4-live-limitations-1440.png), [purchase](evidence/polish-4-live-payment-1440.png).
+- `npm ci` completed with 0 vulnerabilities.
+- `npx tsc --noEmit` passed.
+- `npm test` passed: 11 Vitest unit/contract tests and 19 Playwright browser tests; it includes accessibility, privacy, offline, routing, mobile, and claim-registry coverage.
+- `npm run test:verify-url` passed. `npm run verify:url -- https://small-business-export-map.sociobot.in/` also passed the rendered title, language, main, h1, alt-text, and console checks.
+- `npm run build` passed and created `dist/index.html`. Main JS: 32.32 kB raw / 10.98 kB gzip. Main CSS: 12.55 kB raw / 3.59 kB gzip. The uploaded static artifact was 319,413 B.
+- Fresh remote clone `/tmp/export-map-polish5.nwT18u` at `0b3801e`: `npm ci` passed, then all 18 literal `test` commands in `.factory/claims.json` passed independently. The full command list is in [clean-clone claim evidence](evidence/polish-5-clean-claims.txt).
+- Cold live 390×844 browser crawl after deployment: `/`, `/demo`, `/privacy/`, and `/terms/` returned 200; `/missing-polish-5` returned 404. Each had one h1 and main, `lang=en`, the expected route title, and `twitter:image=https://small-business-export-map.sociobot.in/assets/export-map-og.webp`.
+- Live Axe found zero serious/critical findings on home, demo, Privacy, Terms, and 404. The live demo was primed, taken offline, reloaded, and still showed its demo banner and Download CSV control. Normal-route console and page-error listeners were clean.
+- The live checkout endpoint returned 303 to `https://checkout.dodopayments.com/...` without a payment attempt.
+- Visual evidence: [mobile first screen](evidence/polish-5-live-landing-390.png) and [mobile demo](evidence/polish-5-live-demo-390.png).
 
 ## Run and verify
 
 ```sh
 npm ci
-npm test
 npx tsc --noEmit
+npm test
 npm run build
 npm run verify:url -- https://small-business-export-map.sociobot.in/
 ```
 
-Run every `test` value in `.factory/claims.json` independently for the claims contract.
+Run every `test` value in `.factory/claims.json` independently from a clean clone for the claims contract.
 
 ## Known gaps
 
-None. No payment was made during verification; the live hosted-checkout redirect was checked without purchase, and entitlement behavior used recorded valid/revoked responses.
+None. The pre-existing dirty `graphify-out/` files were not changed.

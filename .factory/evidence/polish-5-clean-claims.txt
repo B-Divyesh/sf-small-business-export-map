@@ -1,0 +1,28 @@
+Clean-clone claims evidence — polish 5
+
+Repository: https://github.com/B-Divyesh/sf-small-business-export-map.git
+Revision: 0b3801e7bc0e412e694cf40876570c87da823139
+Clone: /tmp/export-map-polish5.nwT18u
+
+`npm ci` completed with 0 vulnerabilities. Each literal `test` command in
+`.factory/claims.json` was then run independently from this clone. All 18
+commands exited 0:
+
+PASS demo-isolation — npm run test:e2e -- --grep @claim:demo-isolation
+PASS offline-demo — npm run test:e2e -- --grep @claim:offline-demo
+PASS csv-change-record — npm run test:e2e -- --grep @claim:csv-change-record
+PASS privacy-demo — npm run test:e2e -- --grep @claim:privacy-demo
+PASS privacy-real-workflow — npm run test:e2e -- --grep @claim:privacy-real-workflow
+PASS profile-persistence — npm run test:e2e -- --grep @claim:profile-persistence
+PASS source-preservation — npm run test:e2e -- --grep @claim:source-preservation
+PASS file-limit — npm run test:e2e -- --grep @claim:file-limit
+PASS profile-limit — npm run test:e2e -- --grep @claim:profile-limit
+PASS no-accounting-inference — npm run test:e2e -- --grep @claim:no-accounting-inference
+PASS explicit-formatting — npm run test:unit -- -t @claim:explicit-formatting
+PASS formula-protection — npm run test:unit -- -t @claim:formula-protection
+PASS core-format-matrix — npm run test:unit -- -t @claim:core-format-matrix
+PASS preview-full-download — npm run test:e2e -- --grep @claim:preview-full-download
+PASS profile-backup — npm run test:e2e -- --grep @claim:profile-backup
+PASS checkout-host — npm run test:e2e -- --grep @claim:checkout-host
+PASS pro-license — npm run test:e2e -- --grep @claim:pro-license
+PASS template-import — npm run test:e2e -- --grep @claim:template-import
