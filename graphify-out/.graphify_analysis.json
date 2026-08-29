@@ -196,14 +196,24 @@
       "degree": 21
     },
     {
+      "id": "src_main_q",
+      "label": "q()",
+      "degree": 12
+    },
+    {
       "id": "tsconfig_compileroptions",
       "label": "compilerOptions",
       "degree": 12
     },
     {
-      "id": "src_main_q",
-      "label": "q()",
-      "degree": 12
+      "id": "src_main_handlefile",
+      "label": "handleFile()",
+      "degree": 9
+    },
+    {
+      "id": "src_main_syncform",
+      "label": "syncForm()",
+      "degree": 9
     },
     {
       "id": "src_csv_transformcsv",
@@ -213,16 +223,6 @@
     {
       "id": "package_scripts",
       "label": "scripts",
-      "degree": 9
-    },
-    {
-      "id": "src_main_syncform",
-      "label": "syncForm()",
-      "degree": 9
-    },
-    {
-      "id": "src_main_handlefile",
-      "label": "handleFile()",
       "degree": 9
     },
     {
@@ -236,12 +236,45 @@
       "degree": 8
     },
     {
-      "id": "src_main_importaccountanttemplate",
-      "label": "importAccountantTemplate()",
+      "id": "src_main_saveprofile",
+      "label": "saveProfile()",
       "degree": 8
     }
   ],
   "surprises": [
+    {
+      "source": "bind()",
+      "target": "deleteProfile()",
+      "source_files": [
+        "src/main.ts",
+        "src/db.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "bind()",
+      "target": "listProfiles()",
+      "source_files": [
+        "src/main.ts",
+        "src/db.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "bind()",
+      "target": "replaceProfiles()",
+      "source_files": [
+        "src/main.ts",
+        "src/db.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
     {
       "source": "handleFile()",
       "target": "delimiterLabel()",
@@ -259,39 +292,6 @@
       "source_files": [
         "src/main.ts",
         "src/csv.ts"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "calls",
-      "why": "bridges separate communities"
-    },
-    {
-      "source": "importAccountantTemplate()",
-      "target": "parseTemplateHeaders()",
-      "source_files": [
-        "src/main.ts",
-        "src/csv.ts"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "calls",
-      "why": "bridges separate communities"
-    },
-    {
-      "source": "renderReview()",
-      "target": "transformCsv()",
-      "source_files": [
-        "src/main.ts",
-        "src/csv.ts"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "calls",
-      "why": "bridges separate communities"
-    },
-    {
-      "source": "bind()",
-      "target": "deleteProfile()",
-      "source_files": [
-        "src/main.ts",
-        "src/db.ts"
       ],
       "confidence": "EXTRACTED",
       "relation": "calls",
