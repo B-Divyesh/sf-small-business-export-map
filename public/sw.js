@@ -1,4 +1,4 @@
-const VERSION = 'export-map-v4';
+const VERSION = 'export-map-v5';
 const SHELL = ['/', '/demo', '/offline.html', '/privacy/', '/terms/', '/404.html', '/manifest.webmanifest', '/assets/export-route-768.webp', '/icons/icon-192.png', '/icons/icon-512.png'];
 
 self.addEventListener('install', (event) => {
